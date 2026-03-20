@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Headphones } from "lucide-react";
-import { SectionCornerMarks } from "./GridLines";
+import { SectionCornerMarks } from "@/components/ui/GridLines";
 
 export function Hero() {
   return (

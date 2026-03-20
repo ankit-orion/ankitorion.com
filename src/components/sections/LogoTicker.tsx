@@ -1,4 +1,4 @@
-import { SectionCornerMarks } from "./GridLines";
+import { SectionCornerMarks } from "@/components/ui/GridLines";
 
 export function LogoTicker() {
   const logos = [

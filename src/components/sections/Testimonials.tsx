@@ -2,7 +2,7 @@
 
 import { Star, Quote } from "lucide-react";
 import { motion } from "framer-motion";
-import { SectionCornerMarks } from "./GridLines";
+import { SectionCornerMarks } from "@/components/ui/GridLines";
 
 const testimonials = [
   {
@@ -42,7 +42,7 @@ export function Testimonials() {
           
           <div className="flex -space-x-4">
              {[1,2,3,4,5].map((_, i) => (
-               <div key={i} className="w-12 h-12 rounded-full border-4 border-white dark:border-[#050505] bg-gray-100 dark:bg-[#111] overflow-hidden shadow-sm">
+                <div key={i} className="w-12 h-12 rounded-full border-4 border-white dark:border-[#050505] bg-gray-100 dark:bg-[#111] overflow-hidden shadow-sm">
                   <img src={`https://i.pravatar.cc/150?u=${i}`} alt="user" className="w-full h-full object-cover" />
                </div>
              ))}

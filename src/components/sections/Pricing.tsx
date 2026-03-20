@@ -1,5 +1,5 @@
 import { ArrowRight, Check } from "lucide-react";
-import { SectionCornerMarks } from "./GridLines";
+import { SectionCornerMarks } from "@/components/ui/GridLines";
 
 export function Pricing() {
   const categories = ["Web And App Ui", "Webflow", "Premium", "Consultation", "Wireframing"];

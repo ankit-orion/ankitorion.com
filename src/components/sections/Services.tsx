@@ -2,7 +2,7 @@
 
 import { Check, Zap, Sparkles, Building2 } from "lucide-react";
 import { motion } from "framer-motion";
-import { SectionCornerMarks } from "./GridLines";
+import { SectionCornerMarks } from "@/components/ui/GridLines";
 
 const services = [
   {

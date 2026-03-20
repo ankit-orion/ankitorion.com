@@ -1,5 +1,5 @@
 import { ArrowRight } from "lucide-react";
-import { SectionCornerMarks } from "./GridLines";
+import { SectionCornerMarks } from "@/components/ui/GridLines";
 
 export function Contact() {
   return (

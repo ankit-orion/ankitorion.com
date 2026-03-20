@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Copy, Instagram, X } from "lucide-react";
-import { ThemeToggle } from "./ThemeToggle";
+import { ThemeToggle } from "@/components/ui/ThemeToggle";
 
 export function Navbar() {
   return (

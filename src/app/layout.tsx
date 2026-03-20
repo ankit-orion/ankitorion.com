@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Outfit as OutfitFont } from "next/font/google";
 
 import "./globals.css";
-import { ThemeProvider } from "@/components/theme-provider";
+import { ThemeProvider } from "@/components/ui/theme-provider";
 
 const outfit = OutfitFont({
   subsets: ["latin"],

@@ -1,7 +1,7 @@
 "use client";
 
 import { ArrowRight } from "lucide-react";
-import { SectionCornerMarks } from "./GridLines";
+import { SectionCornerMarks } from "@/components/ui/GridLines";
 import { useState, useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 
@@ -85,13 +85,9 @@ export function FeaturedProjects() {
         Some <span className="font-bold">Of My</span> Featured Project
       </h2>
 
-      {/* Adding a min-height so the absolutely positioned cards don't shrink the container */}
       <div className="relative mx-auto w-full max-w-5xl h-[850px] md:h-[950px] lg:h-[1000px] perspective-[1000px]">
         {cards.map((project, i) => {
           const isFront = i === 0;
-
-          // As you scroll down, the back cards slide down (their `y` offset increases)
-          // letting you peek at the information on their tops slightly more.
           const yOffset = useTransform(scrollYProgress, [0, 0.5, 1], [0, i * 20, i * 40]);
 
           return (
@@ -101,23 +97,21 @@ export function FeaturedProjects() {
               dragConstraints={{ left: 0, right: 0 }}
               onDragEnd={isFront ? handleDragEnd : undefined}
               animate={{
-                top: i * -20, // Stack upwards purely in DOM 
+                top: i * -20,
                 scale: 1 - i * 0.05,
                 zIndex: cards.length - i,
               }}
               style={{
-                top: 80, // Base offset from the top of the container
+                top: 80,
                 y: yOffset,
                 cursor: isFront ? 'grab' : 'auto',
                 borderTop: '1px solid rgba(255,255,255,0.7)',
-                // Give origin so it scales gracefully from top
                 transformOrigin: "top center",
               }}
               whileDrag={{ cursor: 'grabbing', scale: 1.02, rotate: 2 }}
               transition={{ type: "spring", stiffness: 300, damping: 25 }}
               className={`absolute w-full rounded-[30px] md:rounded-[40px] p-6 sm:p-8 md:p-12 shadow-[0_20px_60px_rgba(0,0,0,0.1)] backdrop-blur-md transition-all duration-300 ${project.color}`}
             >
-              {/* Overlay that dims the cards in the back */}
               {!isFront && (
                 <motion.div 
                   initial={{ opacity: 0 }} 

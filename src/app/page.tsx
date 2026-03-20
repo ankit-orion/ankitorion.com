@@ -1,15 +1,15 @@
-import { Navbar } from "@/components/Navbar";
-import { Hero } from "@/components/Hero";
-import { LogoTicker } from "@/components/LogoTicker";
-import { Services } from "@/components/Services";
-import { FeaturedProjects } from "@/components/FeaturedProjects";
-import { MyStory } from "@/components/MyStory";
-import { Testimonials } from "@/components/Testimonials";
-import { Pricing } from "@/components/Pricing";
-import { Benefits } from "@/components/Benefits";
-import { Contact } from "@/components/Contact";
-import { Footer } from "@/components/Footer";
-import { GlobalGrid } from "@/components/GridLines";
+import { Navbar } from "@/components/layout/Navbar";
+import { Hero } from "@/components/sections/Hero";
+import { LogoTicker } from "@/components/sections/LogoTicker";
+import { Services } from "@/components/sections/Services";
+import { FeaturedProjects } from "@/components/sections/FeaturedProjects";
+import { MyStory } from "@/components/sections/MyStory";
+import { Testimonials } from "@/components/sections/Testimonials";
+import { Pricing } from "@/components/sections/Pricing";
+import { Benefits } from "@/components/sections/Benefits";
+import { Contact } from "@/components/sections/Contact";
+import { Footer } from "@/components/layout/Footer";
+import { GlobalGrid } from "@/components/ui/GridLines";
 
 export default function Home() {
   return (

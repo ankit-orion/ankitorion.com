@@ -3,10 +3,6 @@ import React from 'react';
 export function GlobalGrid() {
   return (
     <div className="fixed inset-0 pointer-events-none flex justify-center z-40">
-      {/* 
-        This adds the two faint vertical bounds for the main layout.
-        Using a central max-w-7xl box matches the max-w of Hero.
-      */}
       <div className="w-full max-w-7xl h-full border-l border-r border-black/[0.04] dark:border-white/10" />
     </div>
   );
