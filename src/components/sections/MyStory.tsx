@@ -3,7 +3,7 @@ import { SectionCornerMarks } from "@/components/ui/GridLines";
 
 export function MyStory() {
   return (
-    <section className="relative w-full border-b border-black/[0.04] dark:border-white/10">
+    <section id="my-story" className="relative w-full border-b border-black/[0.04] dark:border-white/10">
       <SectionCornerMarks />
       <div className="py-20 md:py-32 px-4 md:px-8 max-w-5xl mx-auto flex flex-col items-center">
       <h2 className="text-4xl font-medium mb-12">

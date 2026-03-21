@@ -62,7 +62,7 @@ export function FeaturedProjects() {
   
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ["start end", "end start"]
+    offset: ["start center", "end center"]
   });
 
   const handleDragEnd = (e: any, info: any) => {
@@ -78,23 +78,22 @@ export function FeaturedProjects() {
   };
 
   return (
-    <section ref={containerRef} className="relative w-full border-b border-black/[0.04] dark:border-white/10 overflow-hidden">
+    <section id="featured-projects" ref={containerRef} className="relative w-full border-b border-black/[0.04] dark:border-white/10 overflow-hidden">
       <SectionCornerMarks />
       <div className="py-20 md:py-32 px-4 md:px-8 max-w-5xl mx-auto">
       <h2 className="text-3xl md:text-4xl font-medium text-center mb-16 md:mb-24 dark:text-white">
         Some <span className="font-bold">Of My</span> Featured Project
       </h2>
 
-      <div className="relative mx-auto w-full max-w-5xl h-[850px] md:h-[950px] lg:h-[1000px] perspective-[1000px]">
+      <div className="relative mx-auto w-full max-w-5xl h-[580px] sm:h-[850px] md:h-[950px] lg:h-[1100px] perspective-[1000px]">
         {cards.map((project, i) => {
           const isFront = i === 0;
           
-          // Fan upwards logic:
-          // Cards at higher indices (further back) shift UPWARDS as we scroll.
+          // Ultra-Subtle fan upwards for mobile
           const yOffset = useTransform(
             scrollYProgress, 
             [0, 0.4, 0.8, 1], 
-            [0, i * -30, i * -65, i * -90]
+            [0, i * -8, i * -20, i * -30] 
           );
 
           return (
@@ -109,11 +108,11 @@ export function FeaturedProjects() {
                 filter: `brightness(${1 - i * 0.12}) blur(${i * 0.4}px)`,
               }}
               style={{
-                top: 200 - i * 25, // Front card is lower, background cards are higher (peeking from top)
+                top: 50 - i * 12, // Denser starting stack
                 y: yOffset,
                 cursor: isFront ? 'grab' : 'auto',
                 borderTop: '1px solid rgba(255,255,255,0.4)',
-                transformOrigin: "bottom center", // Revealed from top, so anchor to bottom
+                transformOrigin: "bottom center", 
               }}
               whileDrag={{ cursor: 'grabbing', scale: 1.02, rotate: 1 }}
               transition={{ 
@@ -179,15 +178,15 @@ export function FeaturedProjects() {
                 </p>
               </div>
 
-              {/* Enhanced Visual Preview Wrapper */}
-              <div className="w-full h-[250px] sm:h-[300px] md:h-[450px] bg-white dark:bg-[#0c0c0c] rounded-2xl md:rounded-3xl overflow-hidden shadow-inner border border-black/5 dark:border-white/5 relative flex flex-col pt-6 md:pt-10 px-4 md:px-10 items-center">
+              {/* Compact Visual Preview for Mobile */}
+              <div className="w-full h-[280px] sm:h-[450px] md:h-[550px] bg-white dark:bg-[#0c0c0c] rounded-2xl md:rounded-3xl overflow-hidden shadow-inner border border-black/5 dark:border-white/5 relative flex flex-col pt-6 md:pt-10 px-4 md:px-10 items-center">
                 <div className="w-full max-w-xl space-y-4 text-center mt-2 md:mt-4">
                   <h4 className="text-lg md:text-2xl font-bold dark:text-white opacity-80">Next-Gen Interface Experience</h4>
                   <motion.div 
                     initial={{ y: 50, opacity: 0 }}
                     whileInView={{ y: 0, opacity: 1 }}
                     transition={{ delay: 0.2 }}
-                    className="w-[200px] sm:w-[280px] md:w-[360px] h-[350px] md:h-[500px] mx-auto bg-black rounded-t-[30px] md:rounded-t-[50px] border-[6px] md:border-[10px] border-[#1a1a1a] dark:border-[#222] mt-4 md:mt-12 shadow-2xl relative overflow-hidden"
+                    className="w-[180px] sm:w-[280px] md:w-[360px] h-[240px] sm:h-[400px] md:h-[550px] mx-auto bg-black rounded-t-[30px] md:rounded-t-[50px] border-[6px] md:border-[10px] border-[#1a1a1a] dark:border-[#222] mt-4 md:mt-8 shadow-2xl relative overflow-hidden"
                   >
                     <img 
                       src={`https://images.unsplash.com/photo-${project.id === 1 ? '1616077168079-7e0f5fa2435e' : project.id === 2 ? '1460925895917-afdab827c52f' : '1551288049-bebda4e38f71'}?q=80&w=800`} 

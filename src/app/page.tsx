@@ -26,7 +26,6 @@ export default function Home() {
       <MyStory />
       <BookSection />
       <Testimonials />
-      <Pricing />
       <Benefits />
       <Contact />
       <Footer />

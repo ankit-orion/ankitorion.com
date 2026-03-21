@@ -15,6 +15,8 @@ export const metadata: Metadata = {
   viewport: "width=device-width, initial-scale=1",
 };
 
+import { DesktopRecommend } from "@/components/ui/DesktopRecommend";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -29,6 +31,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          <DesktopRecommend />
           {children}
         </ThemeProvider>
       </body>
