@@ -5,7 +5,7 @@ export function Contact() {
   return (
     <section id="contact" className="relative w-full border-b border-black/[0.04] dark:border-white/10">
       <SectionCornerMarks />
-      <div className="py-16 md:py-24 px-4 md:px-8 max-w-5xl mx-auto flex flex-col sm:flex-row gap-12 sm:gap-24 items-center sm:items-start justify-between">
+      <div className="py-16 md:py-24 px-4 md:px-8 max-w-4xl mx-auto flex flex-col sm:flex-row gap-12 sm:gap-24 items-center sm:items-start justify-between">
       
       <div className="flex-1 space-y-8">
         <div className="flex items-start gap-4">

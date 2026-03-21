@@ -35,7 +35,7 @@ export function Services() {
   return (
     <section id="services" className="relative w-full border-b border-black/[0.04] dark:border-white/10 overflow-hidden">
       <SectionCornerMarks />
-      <div className="py-20 md:py-32 px-4 md:px-8 max-w-7xl mx-auto">
+      <div className="py-20 md:py-32 px-4 md:px-8 max-w-5xl mx-auto">
         <div className="text-center mb-16 space-y-4">
           <h2 className="text-3xl md:text-5xl font-bold tracking-tight dark:text-white">
             What I <span className="text-gray-400 dark:text-gray-500 font-medium">Can Do For You</span>

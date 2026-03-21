@@ -49,7 +49,7 @@ export function BookSection() {
   return (
     <section id="library" className="relative w-full border-b border-black/[0.04] dark:border-white/10 overflow-hidden bg-white dark:bg-[#050505] py-20 md:py-32">
       <SectionCornerMarks />
-      <div className="px-4 md:px-8 max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-16 md:gap-24">
+      <div className="px-4 md:px-8 max-w-4xl mx-auto flex flex-col lg:flex-row items-center gap-16 md:gap-24">
         
         {/* Left Content */}
         <div className="flex-1 space-y-8 text-center lg:text-left">

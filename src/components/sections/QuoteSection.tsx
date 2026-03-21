@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 export function QuoteSection() {
   return (
     <section className="relative w-full border-b border-black/[0.04] dark:border-white/10 overflow-hidden bg-gray-50/30 dark:bg-[#080808]">
-      <div className="py-16 md:py-24 px-4 md:px-8 max-w-5xl mx-auto text-center">
+      <div className="py-16 md:py-24 px-4 md:px-8 max-w-4xl mx-auto text-center">
         <motion.div
            initial={{ opacity: 0, y: 20 }}
            whileInView={{ opacity: 1, y: 0 }}

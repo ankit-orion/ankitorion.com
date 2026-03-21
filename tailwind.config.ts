@@ -12,6 +12,7 @@ const config: Config = {
       fontFamily: {
         sans: ["var(--font-outfit)", "ui-sans-serif", "system-ui"],
         outfit: ["var(--font-outfit)", "sans-serif"],
+        handwriting: ["var(--font-caveat)", "cursive"],
       },
       colors: {
         background: "var(--background)",
@@ -22,6 +23,9 @@ const config: Config = {
         '4xl': '2rem',
         '5xl': '2.5rem',
         '6xl': '3rem',
+      },
+      screens: {
+        'sx': '400px',
       },
     },
   },

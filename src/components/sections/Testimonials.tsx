@@ -29,7 +29,7 @@ export function Testimonials() {
   return (
     <section id="testimonials" className="relative w-full border-b border-black/[0.04] dark:border-white/10 overflow-hidden">
       <SectionCornerMarks />
-      <div className="py-20 md:py-32 px-4 md:px-8 max-w-7xl mx-auto">
+      <div className="py-20 md:py-32 px-4 md:px-8 max-w-5xl mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-center md:items-end mb-16 gap-8 text-center md:text-left">
           <div className="space-y-4">
             <h2 className="text-3xl md:text-5xl font-bold tracking-tight dark:text-white">
