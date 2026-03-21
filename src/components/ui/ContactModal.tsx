@@ -3,6 +3,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Send, User, Mail, MessageSquare } from "lucide-react";
 import { useEffect, useState } from "react";
+import { toast } from "sonner";
 
 interface ContactModalProps {
   isOpen: boolean;
@@ -47,7 +48,7 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
     }
     setErrors({});
     // TODO: send formData to backend API
-    alert("Message sent!");
+    toast.success("Message sent!", { description: "I'll get back to you soon." });
     setFormData({ name: "", email: "", message: "" });
     onClose();
   };

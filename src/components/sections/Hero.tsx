@@ -1,20 +1,22 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { Headphones, ArrowRight } from "lucide-react";
 import { SectionCornerMarks } from "@/components/ui/GridLines";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 
 export function Hero() {
+  const prefersReduced = useReducedMotion();
   const bioText = "Hiiii, I'm Ankit — a software engineer from Patna, Bihar. I spend my time building software, solving problems, and understanding how systems work, both in code and beyond it. I'm deeply interested in space science and philosophy, constantly exploring ideas about the universe, logic, and human thinking.";
 
   const container = {
     hidden: { opacity: 0 },
-    visible: (i = 1) => ({
+    visible: () => ({
       opacity: 1,
-      transition: { 
-        staggerChildren: 0.025, 
-        delayChildren: 0 
+      transition: {
+        staggerChildren: prefersReduced ? 0 : 0.025,
+        delayChildren: 0,
       },
     }),
   };
@@ -22,13 +24,9 @@ export function Hero() {
   const child = {
     visible: {
       opacity: 1,
-      transition: {
-        duration: 0.01,
-      },
+      transition: { duration: prefersReduced ? 0 : 0.01 },
     },
-    hidden: {
-      opacity: 0,
-    },
+    hidden: { opacity: 0 },
   };
 
 
@@ -79,10 +77,12 @@ export function Hero() {
           <div className="relative w-full max-w-[450px] md:max-w-none h-full rounded-[40px] md:rounded-[60px] overflow-hidden bg-gray-50 dark:bg-[#0a0a0a] flex items-center justify-center border border-black/5 dark:border-white/5 shadow-2xl">
             {/* The base portrait image */}
             <div className="absolute inset-0">
-              <img
+              <Image
                 src="/portrait.png"
-                alt="Portrait"
-                className="w-full h-full object-cover filter grayscale contrast-[1.1] scale-110"
+                alt="Portrait of Ankit"
+                fill
+                priority
+                className="object-cover filter grayscale contrast-[1.1] scale-110"
               />
               <div className="absolute inset-0 bg-gradient-to-tr from-black/20 via-transparent to-white/10 pointer-events-none"></div>
             </div>

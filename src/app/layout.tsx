@@ -3,6 +3,9 @@ import { Outfit as OutfitFont, Caveat as CaveatFont } from "next/font/google";
 
 import "./globals.css";
 import { ThemeProvider } from "@/components/ui/theme-provider";
+import { Toaster } from "sonner";
+import { ScrollProgress } from "@/components/ui/ScrollProgress";
+import { BackToTop } from "@/components/ui/BackToTop";
 
 const outfit = OutfitFont({
   subsets: ["latin"],
@@ -15,9 +18,23 @@ const caveat = CaveatFont({
 });
 
 export const metadata: Metadata = {
-  title: "Ankit | Full-Stack Web Developer - Patna, Bihar",
+  title: "Ankit Orion | Full-Stack Web Developer",
   description:
-    "Full-Stack Web Developer from Patna, Bihar. B.Tech CSE from LPU. Passionate about philosophy, cricket, and the cosmos.",
+    "Full-Stack Web Developer from Patna, Bihar. Building fast, modern web apps with React, Next.js, Node.js and more.",
+  openGraph: {
+    title: "Ankit Orion | Full-Stack Web Developer",
+    description: "Building fast, modern web apps with React, Next.js, Node.js and more.",
+    url: "https://ankitorion.dev",
+    siteName: "Ankit Orion",
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Ankit Orion | Full-Stack Web Developer",
+    description: "Building fast, modern web apps with React, Next.js, Node.js and more.",
+  },
+  robots: { index: true, follow: true },
 };
 
 export const viewport = {
@@ -41,7 +58,10 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          <ScrollProgress />
           {children}
+          <BackToTop />
+          <Toaster richColors position="bottom-right" />
         </ThemeProvider>
       </body>
     </html>

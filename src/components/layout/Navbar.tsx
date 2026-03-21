@@ -1,23 +1,42 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Copy, Instagram, X as XIcon, Menu, X } from "lucide-react";
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
 
 const navLinks = [
-  { name: "Home", href: "/" },
-  { name: "Services", href: "#services" },
-  { name: "Projects", href: "#featured-projects" },
-  { name: "Library", href: "#library" },
-  { name: "Story", href: "#my-story" },
+  { name: "Home", href: "/", sectionId: "" },
+  { name: "Services", href: "#services", sectionId: "services" },
+  { name: "Projects", href: "#featured-projects", sectionId: "featured-projects" },
+  { name: "Library", href: "#library", sectionId: "library" },
+  { name: "Story", href: "#my-story", sectionId: "my-story" },
 ];
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [visible, setVisible] = useState(true);
+  const [activeSection, setActiveSection] = useState("");
   const { scrollY } = useScroll();
+
+  useEffect(() => {
+    const sectionIds = navLinks.map((l) => l.sectionId).filter(Boolean);
+    const observers: IntersectionObserver[] = [];
+
+    sectionIds.forEach((id) => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      const obs = new IntersectionObserver(
+        ([entry]) => { if (entry.isIntersecting) setActiveSection(id); },
+        { rootMargin: "-30% 0px -60% 0px" }
+      );
+      obs.observe(el);
+      observers.push(obs);
+    });
+
+    return () => observers.forEach((obs) => obs.disconnect());
+  }, []);
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     const previous = scrollY.getPrevious() ?? 0;
@@ -50,15 +69,22 @@ export function Navbar() {
           
           {/* Center Column: Nav Links (Desktop) */}
           <div className="hidden lg:flex items-center justify-center gap-6 px-6 border-l border-r border-black/5 dark:border-white/10 mx-2">
-             {navLinks.map((link) => (
-               <Link 
-                 key={link.name} 
+             {navLinks.map((link) => {
+               const isActive = link.sectionId ? activeSection === link.sectionId : activeSection === "";
+               return (
+               <Link
+                 key={link.name}
                  href={link.href}
-                 className="text-xs font-bold uppercase tracking-widest text-gray-500 hover:text-black dark:text-gray-400 dark:hover:text-white transition whitespace-nowrap"
+                 className={`text-xs font-bold uppercase tracking-widest transition whitespace-nowrap ${
+                   isActive
+                     ? "text-black dark:text-white"
+                     : "text-gray-500 hover:text-black dark:text-gray-400 dark:hover:text-white"
+                 }`}
                >
                  {link.name}
                </Link>
-             ))}
+             );
+             })}
           </div>
   
           {/* Right Column: Actions */}

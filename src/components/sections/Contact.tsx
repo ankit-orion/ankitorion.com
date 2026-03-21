@@ -1,9 +1,11 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 import { ArrowRight, Calendar, MessageSquare, Clock, Check, Send, User, Mail, Sparkles } from "lucide-react";
 import { SectionCornerMarks } from "@/components/ui/GridLines";
 import { useState, useEffect } from "react";
+import { toast } from "sonner";
 
 type ViewType = "none" | "book" | "message";
 
@@ -35,7 +37,7 @@ export function Contact() {
     }
     setMsgErrors({});
     // TODO: send msgForm to backend API
-    alert("Inquiry sent!");
+    toast.success("Inquiry sent!", { description: "I'll respond within 24 hours." });
     setMsgForm({ name: "", email: "", message: "" });
   };
 
@@ -75,8 +77,8 @@ export function Contact() {
                 Your <span className="text-gray-400 dark:text-gray-600 font-medium italic">Vision.</span><br />
                 My <span className="text-black dark:text-white">Creation.</span>
               </h2>
-              <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden bg-gray-100 dark:bg-[#111] flex-shrink-0 border-2 border-black/5 dark:border-white/10 hidden sm:block">
-                 <img src="/portrait.png" alt="avatar" className="w-full h-full object-cover filter grayscale contrast-125" />
+              <div className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden bg-gray-100 dark:bg-[#111] flex-shrink-0 border-2 border-black/5 dark:border-white/10 hidden sm:block">
+                 <Image src="/portrait.png" alt="Ankit Orion" fill className="object-cover filter grayscale contrast-125" />
               </div>
             </div>
 
