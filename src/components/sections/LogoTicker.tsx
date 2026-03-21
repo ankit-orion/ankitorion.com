@@ -43,19 +43,7 @@ export function LogoTicker() {
             </div>
           </div>
         </div>
-        <style dangerouslySetInnerHTML={{__html: `
-          @keyframes slide {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-33.33%); }
-          }
-          .animate-slide {
-            animation: slide 30s linear infinite;
-          }
-          .mask-image-gradient {
-            mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
-            -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
-          }
-        `}} />
+
       </div>
     </section>
   );

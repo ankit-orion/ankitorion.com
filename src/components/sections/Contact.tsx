@@ -12,6 +12,33 @@ export function Contact() {
   const [selectedDate, setSelectedDate] = useState<number | null>(null);
   const [selectedTime, setSelectedTime] = useState<string | null>(null);
 
+  const [msgForm, setMsgForm] = useState({ name: "", email: "", message: "" });
+  const [msgErrors, setMsgErrors] = useState<{ name?: string; email?: string; message?: string }>({});
+
+  const validateMsg = () => {
+    const errs: { name?: string; email?: string; message?: string } = {};
+    if (!msgForm.name.trim() || msgForm.name.trim().length < 2)
+      errs.name = "Name must be at least 2 characters.";
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(msgForm.email))
+      errs.email = "Please enter a valid email address.";
+    if (!msgForm.message.trim() || msgForm.message.trim().length < 10)
+      errs.message = "Message must be at least 10 characters.";
+    return errs;
+  };
+
+  const handleMsgSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const errs = validateMsg();
+    if (Object.keys(errs).length > 0) {
+      setMsgErrors(errs);
+      return;
+    }
+    setMsgErrors({});
+    // TODO: send msgForm to backend API
+    alert("Inquiry sent!");
+    setMsgForm({ name: "", email: "", message: "" });
+  };
+
   useEffect(() => {
     const handleHash = () => {
       const hash = window.location.hash;
@@ -189,20 +216,23 @@ export function Contact() {
                     </div>
                  </div>
 
-                 <form className="space-y-4 md:space-y-6">
+                 <form className="space-y-4 md:space-y-6" onSubmit={handleMsgSubmit}>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                        <div className="space-y-2">
                           <label className="text-[10px] uppercase font-black tracking-widest text-gray-600 dark:text-gray-300 flex items-center gap-2"><User className="w-3 h-3"/> Name</label>
-                          <input type="text" placeholder="John Doe" className="w-full bg-white dark:bg-white/5 px-4 md:px-5 py-3 md:py-4 rounded-2xl border-2 border-gray-200 dark:border-white/20 focus:border-black dark:focus:border-white transition-all text-gray-900 dark:text-gray-100 placeholder:text-gray-400 dark:placeholder:text-gray-500 font-medium" required />
+                          <input type="text" placeholder="John Doe" value={msgForm.name} onChange={(e) => setMsgForm({ ...msgForm, name: e.target.value })} className="w-full bg-white dark:bg-white/5 px-4 md:px-5 py-3 md:py-4 rounded-2xl border-2 border-gray-200 dark:border-white/20 focus:border-black dark:focus:border-white transition-all text-gray-900 dark:text-gray-100 placeholder:text-gray-400 dark:placeholder:text-gray-500 font-medium" required />
+                          {msgErrors.name && <p className="text-xs text-red-500">{msgErrors.name}</p>}
                        </div>
                        <div className="space-y-2">
                           <label className="text-[10px] uppercase font-black tracking-widest text-gray-600 dark:text-gray-300 flex items-center gap-2"><Mail className="w-3 h-3"/> Email</label>
-                          <input type="email" placeholder="john@example.com" className="w-full bg-white dark:bg-white/5 px-4 md:px-5 py-3 md:py-4 rounded-2xl border-2 border-gray-200 dark:border-white/20 focus:border-black dark:focus:border-white transition-all text-gray-900 dark:text-gray-100 placeholder:text-gray-400 dark:placeholder:text-gray-500 font-medium" required />
+                          <input type="email" placeholder="john@example.com" value={msgForm.email} onChange={(e) => setMsgForm({ ...msgForm, email: e.target.value })} className="w-full bg-white dark:bg-white/5 px-4 md:px-5 py-3 md:py-4 rounded-2xl border-2 border-gray-200 dark:border-white/20 focus:border-black dark:focus:border-white transition-all text-gray-900 dark:text-gray-100 placeholder:text-gray-400 dark:placeholder:text-gray-500 font-medium" required />
+                          {msgErrors.email && <p className="text-xs text-red-500">{msgErrors.email}</p>}
                        </div>
                     </div>
                     <div className="space-y-2">
                         <label className="text-[10px] uppercase font-black tracking-widest text-gray-600 dark:text-gray-300 flex items-center gap-2"><MessageSquare className="w-3 h-3"/> Your Vision</label>
-                        <textarea placeholder="Tell me about your project..." rows={4} className="w-full bg-white dark:bg-white/5 px-4 md:px-5 py-3 md:py-4 rounded-2xl border-2 border-gray-200 dark:border-white/20 focus:border-black dark:focus:border-white transition-all text-gray-900 dark:text-gray-100 placeholder:text-gray-400 dark:placeholder:text-gray-500 font-medium resize-none" required></textarea>
+                        <textarea placeholder="Tell me about your project..." rows={4} value={msgForm.message} onChange={(e) => setMsgForm({ ...msgForm, message: e.target.value })} className="w-full bg-white dark:bg-white/5 px-4 md:px-5 py-3 md:py-4 rounded-2xl border-2 border-gray-200 dark:border-white/20 focus:border-black dark:focus:border-white transition-all text-gray-900 dark:text-gray-100 placeholder:text-gray-400 dark:placeholder:text-gray-500 font-medium resize-none" required></textarea>
+                        {msgErrors.message && <p className="text-xs text-red-500">{msgErrors.message}</p>}
                     </div>
                     <button type="submit" className="w-full bg-black dark:bg-white text-white dark:text-black py-4 md:py-5 rounded-2xl font-black flex items-center justify-center gap-2 md:gap-3 hover:scale-[1.02] transition shadow-xl group">
                        <span>Send Inquiry</span>

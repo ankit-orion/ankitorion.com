@@ -25,11 +25,30 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
     message: "",
   });
 
+  const [errors, setErrors] = useState<{ name?: string; email?: string; message?: string }>({});
+
+  const validate = () => {
+    const newErrors: { name?: string; email?: string; message?: string } = {};
+    if (!formData.name.trim() || formData.name.trim().length < 2)
+      newErrors.name = "Name must be at least 2 characters.";
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email))
+      newErrors.email = "Please enter a valid email address.";
+    if (!formData.message.trim() || formData.message.trim().length < 10)
+      newErrors.message = "Message must be at least 10 characters.";
+    return newErrors;
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Later implement backend
-    console.log("Form Data:", formData);
-    alert("Message sent! (Simulation)");
+    const validationErrors = validate();
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      return;
+    }
+    setErrors({});
+    // TODO: send formData to backend API
+    alert("Message sent!");
+    setFormData({ name: "", email: "", message: "" });
     onClose();
   };
 
@@ -93,6 +112,7 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     className="w-full bg-gray-50 dark:bg-white/[0.03] border border-black/10 dark:border-white/5 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-black dark:focus:ring-white transition-all text-gray-900 dark:text-white placeholder:text-gray-400 dark:placeholder:text-gray-600 font-medium"
                   />
+                  {errors.name && <p className="text-xs text-red-500">{errors.name}</p>}
                 </div>
 
                 {/* Email Field */}
@@ -108,6 +128,7 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     className="w-full bg-gray-50 dark:bg-white/[0.03] border border-black/10 dark:border-white/5 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-black dark:focus:ring-white transition-all text-gray-900 dark:text-white placeholder:text-gray-400 dark:placeholder:text-gray-600 font-medium"
                   />
+                  {errors.email && <p className="text-xs text-red-500">{errors.email}</p>}
                 </div>
 
                 {/* Message Field */}
@@ -123,6 +144,7 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     className="w-full bg-gray-50 dark:bg-white/[0.03] border border-black/10 dark:border-white/5 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-black dark:focus:ring-white transition-all text-gray-900 dark:text-white placeholder:text-gray-400 dark:placeholder:text-gray-600 font-medium resize-none"
                   />
+                  {errors.message && <p className="text-xs text-red-500">{errors.message}</p>}
                 </div>
               </div>
 

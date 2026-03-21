@@ -11,8 +11,9 @@ export function DesktopRecommend() {
     // 1. Check if user is on mobile/tablet (Desktop is usually 1024px+)
     const isMobile = window.innerWidth < 1024;
     
-    // 2. Check if user has already seen/dismissed this
-    const hasSeen = localStorage.getItem("desktop-recommend-seen");
+    // 2. Check if user has already seen/dismissed this (expires after 30 days)
+    const seenAt = localStorage.getItem("desktop-recommend-seen");
+    const hasSeen = seenAt && Date.now() - parseInt(seenAt) < 30 * 24 * 60 * 60 * 1000;
 
     if (isMobile && !hasSeen) {
       // Small delay for better UX
@@ -23,7 +24,7 @@ export function DesktopRecommend() {
 
   const handleDismiss = () => {
     setIsVisible(false);
-    localStorage.setItem("desktop-recommend-seen", "true");
+    localStorage.setItem("desktop-recommend-seen", Date.now().toString());
   };
 
   return (
