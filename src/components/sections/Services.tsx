@@ -33,7 +33,7 @@ const services = [
 
 export function Services() {
   return (
-    <section id="services" className="relative w-full border-b border-black/[0.04] dark:border-white/10 overflow-hidden">
+    <section id="services" className="relative w-full overflow-hidden">
       <SectionCornerMarks />
       <div className="py-20 md:py-32 px-4 md:px-8 max-w-5xl mx-auto">
         <div className="text-center mb-16 space-y-4">

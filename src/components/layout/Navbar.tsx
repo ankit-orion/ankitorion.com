@@ -30,54 +30,68 @@ export function Navbar() {
 
   return (
     <>
-      <motion.nav 
-        initial={{ y: 0 }}
-        animate={{ y: visible ? 0 : -100 }}
-        transition={{ duration: 0.3, ease: "easeInOut" }}
-        className="fixed top-4 md:top-6 left-1/2 -translate-x-1/2 z-[100] bg-white/70 dark:bg-[#0a0a0a]/70 backdrop-blur-xl px-4 md:px-6 py-2 md:py-3 rounded-full border border-black/5 dark:border-white/10 shadow-[0_10px_40px_rgba(0,0,0,0.1)] flex items-center gap-3 md:gap-6 w-[95%] sm:w-auto max-w-2xl justify-between sm:justify-center"
-      >
-        
-        {/* Logo Section */}
-        <Link href="/" className="flex items-center gap-2 hover:scale-105 transition flex-shrink-0 group">
-          <div className="w-8 h-8 rounded-full bg-black dark:bg-white flex items-center justify-center">
-             <span className="text-white dark:text-black font-bold text-xs">A.</span>
-          </div>
-          <span className="font-bold text-sm text-black dark:text-white hidden sm:block tracking-tight">Ankit Orion</span>
-        </Link>
-        
-        {/* Social Icons */}
-        <div className="hidden sm:flex items-center gap-4 text-gray-500 dark:text-gray-400 border-l border-r px-6 border-black/5 dark:border-white/10 mx-2">
-          <Link href="#" className="hover:text-black dark:hover:text-white transition group">
-            <XIcon className="w-4 h-4 group-hover:scale-110 transition" />
-          </Link>
-          <Link href="#" className="hover:text-black dark:hover:text-white transition group">
-            <Instagram className="w-4 h-4 group-hover:scale-110 transition" />
-          </Link>
-          <Link href="#" className="hover:text-black dark:hover:text-white transition group">
-            <Copy className="w-4 h-4 group-hover:scale-110 transition" />
-          </Link>
-        </div>
-
-        {/* Right Section (Theme Toggle + CTA) */}
-        <div className="flex items-center gap-2 sm:gap-4 flex-shrink-0">
-          <ThemeToggle />
+      <div className="fixed top-4 md:top-6 left-0 right-0 z-[100] flex justify-center pointer-events-none px-4">
+        <motion.nav 
+          initial={{ y: 0 }}
+          animate={{ y: visible ? 0 : -100 }}
+          transition={{ duration: 0.3, ease: "easeInOut" }}
+          className="pointer-events-auto bg-white/70 dark:bg-[#0a0a0a]/70 backdrop-blur-xl px-4 md:px-6 py-2 md:py-3 rounded-full border border-black/5 dark:border-white/10 shadow-[0_10px_40px_rgba(0,0,0,0.1)] flex items-center lg:grid lg:grid-cols-3 gap-3 md:gap-4 w-full lg:w-max lg:min-w-[800px] max-w-4xl justify-between mx-auto"
+        >
           
-          <Link
-            href="#contact"
-            className="hidden sm:block bg-[#1a1a1a] dark:bg-white text-white dark:text-black px-5 py-2 rounded-full text-xs font-bold uppercase tracking-wider hover:bg-black dark:hover:bg-gray-200 transition text-center shadow-lg"
-          >
-            Book Now
-          </Link>
-
-          {/* Mobile Menu Trigger */}
-          <button 
-            onClick={() => setIsOpen(true)}
-            className="lg:hidden p-2 rounded-full border border-black/5 dark:border-white/10 bg-black/5 dark:bg-white/5 text-black dark:text-white hover:bg-black/10 transition"
-          >
-            <Menu className="w-5 h-5" />
-          </button>
-        </div>
-      </motion.nav>
+          {/* Left Column: Logo Section */}
+          <div className="flex items-center justify-start">
+            <Link href="/" className="flex items-center gap-2 hover:scale-105 transition flex-shrink-0 group">
+              <div className="w-8 h-8 rounded-full bg-black dark:bg-white flex items-center justify-center">
+                 <span className="text-white dark:text-black font-bold text-xs">A.</span>
+              </div>
+              <span className="font-bold text-sm text-black dark:text-white hidden sm:block tracking-tight whitespace-nowrap">Ankit Orion</span>
+            </Link>
+          </div>
+          
+          {/* Center Column: Nav Links (Desktop) */}
+          <div className="hidden lg:flex items-center justify-center gap-6 px-6 border-l border-r border-black/5 dark:border-white/10 mx-2">
+             {navLinks.map((link) => (
+               <Link 
+                 key={link.name} 
+                 href={link.href}
+                 className="text-xs font-bold uppercase tracking-widest text-gray-500 hover:text-black dark:text-gray-400 dark:hover:text-white transition whitespace-nowrap"
+               >
+                 {link.name}
+               </Link>
+             ))}
+          </div>
+  
+          {/* Right Column: Actions */}
+          <div className="flex items-center justify-end gap-2 sm:gap-4 flex-shrink-0">
+            {/* Social Icons for Mobile only */}
+            <div className="flex lg:hidden items-center gap-2 sm:gap-4 text-gray-500 dark:text-gray-400 mr-2 sm:mr-4 pr-2 sm:pr-4 border-r border-black/5 dark:border-white/10">
+              <Link href="#" className="hover:text-black dark:hover:text-white transition group flex items-center">
+                <XIcon className="w-4 h-4 sm:w-5 sm:h-5 group-hover:scale-110 transition" />
+              </Link>
+              <Link href="#" className="hover:text-black dark:hover:text-white transition group flex items-center">
+                <Instagram className="w-4 h-4 sm:w-5 sm:h-5 group-hover:scale-110 transition" />
+              </Link>
+            </div>
+  
+            <ThemeToggle />
+            
+            <Link
+              href="#contact"
+              className="hidden sx:block bg-[#1a1a1a] dark:bg-white text-white dark:text-black px-4 sm:px-5 py-2 rounded-full text-[10px] sm:text-xs font-bold uppercase tracking-wider hover:bg-black dark:hover:bg-gray-200 transition text-center shadow-lg whitespace-nowrap"
+            >
+              Book Now
+            </Link>
+  
+            {/* Mobile Menu Trigger */}
+            <button 
+              onClick={() => setIsOpen(true)}
+              className="lg:hidden p-2 rounded-full border border-black/5 dark:border-white/10 bg-black/5 dark:bg-white/5 text-black dark:text-white hover:bg-black/10 transition"
+            >
+              <Menu className="w-5 h-5" />
+            </button>
+          </div>
+        </motion.nav>
+      </div>
 
       {/* MOBILE DRAWER */}
       <AnimatePresence>

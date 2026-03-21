@@ -18,7 +18,11 @@ export const metadata: Metadata = {
   title: "Ankit | Full-Stack Web Developer - Patna, Bihar",
   description:
     "Full-Stack Web Developer from Patna, Bihar. B.Tech CSE from LPU. Passionate about philosophy, cricket, and the cosmos.",
-  viewport: "width=device-width, initial-scale=1",
+};
+
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
 };
 
 export default function RootLayout({

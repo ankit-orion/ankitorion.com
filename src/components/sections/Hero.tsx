@@ -1,12 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import { Headphones } from "lucide-react";
+import { Headphones, ArrowRight } from "lucide-react";
 import { SectionCornerMarks } from "@/components/ui/GridLines";
 import { motion } from "framer-motion";
 
 export function Hero() {
-  const bioText = "Hi, I'm Ankit — a software engineer from Patna, Bihar. I spend my time building software, solving problems, and understanding how systems work, both in code and beyond it. I'm deeply interested in space science and philosophy, constantly exploring ideas about the universe, logic, and human thinking.";
+  const bioText = "Hiiii, I'm Ankit — a software engineer from Patna, Bihar. I spend my time building software, solving problems, and understanding how systems work, both in code and beyond it. I'm deeply interested in space science and philosophy, constantly exploring ideas about the universe, logic, and human thinking.";
 
   const container = {
     hidden: { opacity: 0 },
@@ -33,16 +33,16 @@ export function Hero() {
 
 
   return (
-    <section className="relative w-full border-b border-black/[0.04] dark:border-white/10 overflow-hidden bg-white dark:bg-black">
+    <section className="relative w-full overflow-hidden bg-white dark:bg-black">
       <SectionCornerMarks />
-      <div className="min-h-[100dvh] pt-32 pb-16 md:pt-40 md:pb-20 px-4 md:px-8 max-w-5xl mx-auto flex flex-col md:flex-row items-center gap-12 lg:gap-20">
-        <div className="flex-1 space-y-8 md:space-y-10 text-left order-2 md:order-1 relative z-10">
-          <div className="inline-flex items-center gap-2 bg-[#dcffca] text-[#2c5300] px-4 py-2 rounded-full text-sm font-medium border border-black/5">
+      <div className="min-h-[100dvh] pt-24 pb-16 md:pt-32 md:pb-20 px-4 md:px-8 max-w-5xl mx-auto flex flex-col md:flex-row items-center gap-8 lg:gap-16">
+        <div className="flex-1 space-y-5 md:space-y-6 text-left order-2 md:order-1 relative z-10">
+          <div className="inline-flex items-center gap-2 bg-[#dcffca] text-[#2c5300] px-4 py-2 rounded-full text-[10px] md:text-xs font-medium border border-black/5">
             <div className="w-2 h-2 rounded-full bg-[#46A200] animate-pulse" />
             Available for Freelance
           </div>
 
-          <h1 className="text-4xl md:text-6xl lg:text-[72px] font-bold leading-[1.1] tracking-tight text-[#1a1a1a] dark:text-white">
+          <h1 className="text-3xl md:text-5xl lg:text-[64px] font-bold leading-[1.1] tracking-tight text-[#1a1a1a] dark:text-white">
             Code First.
             <br />
             Everything Else
@@ -66,16 +66,10 @@ export function Hero() {
           <div className="flex flex-wrap items-center gap-4 pt-4">
             <Link
               href="#contact"
-              className="flex items-center gap-3 bg-[#111] dark:bg-white text-white dark:text-black px-8 py-5 rounded-full font-bold hover:bg-black dark:hover:bg-gray-100 transition shadow-xl"
+              className="flex items-center gap-3 bg-[#111] dark:bg-white text-white dark:text-black px-10 py-5 rounded-full font-bold hover:bg-black dark:hover:bg-gray-100 transition shadow-2xl scale-105 active:scale-95"
             >
-              <span>Book a Call</span>
-              <Headphones className="w-5 h-5" />
-            </Link>
-            <Link
-              href="#pricing"
-              className="px-8 py-5 rounded-full font-bold border-2 border-black/5 dark:border-white/10 hover:border-black/10 dark:hover:border-white/20 transition text-[#1a1a1a] dark:text-white bg-white/50 dark:bg-black/50 backdrop-blur-sm"
-            >
-              View Pricing
+              <span>Contact Me</span>
+              <ArrowRight className="w-5 h-5" />
             </Link>
           </div>
         </div>

@@ -167,7 +167,7 @@ export function FeaturedProjects() {
     <section
       id="featured-projects"
       ref={containerRef}
-      className="relative w-full border-b border-black/[0.04] dark:border-white/10 overflow-x-clip isolate"
+      className="relative w-full overflow-x-clip isolate"
     >
       <SectionCornerMarks />
 
