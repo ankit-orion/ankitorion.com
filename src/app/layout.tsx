@@ -10,8 +10,8 @@ const outfit = OutfitFont({
 });
 
 export const metadata: Metadata = {
-  title: "Ankit Orion | Product Designer - High Conversion Websites",
-  description: "Senior Product Designer specializing in Web & Mobile Apps for FinTech, E-Commerce, and SaaS. Currently based in India.",
+  title: "Ankit | Full-Stack Web Developer - Patna, Bihar",
+  description: "Full-Stack Web Developer from Patna, Bihar. B.Tech CSE from LPU. Passionate about philosophy, cricket, and the cosmos.",
   viewport: "width=device-width, initial-scale=1",
 };
 

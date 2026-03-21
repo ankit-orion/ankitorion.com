@@ -14,13 +14,13 @@ export function Hero() {
         </div>
         
         <h1 className="text-5xl md:text-7xl lg:text-[80px] font-medium leading-[1.1] tracking-tight text-[#1a1a1a] dark:text-white">
-          Designing Websites<br className="hidden md:block" />
-          {' '}That Maximize<br className="hidden md:block" />
-          {' '}<span className="text-[#1a1a1a]/80 dark:text-gray-400">Conversions.</span>
+          Building Digital<br className="hidden md:block" />
+          {' '}Universes In Search<br className="hidden md:block" />
+          {' '}<span className="text-[#1a1a1a]/80 dark:text-gray-400">Of The Infinite.</span>
         </h1>
 
         <p className="text-base md:text-lg text-gray-500 dark:text-gray-400 max-w-xl leading-relaxed mx-auto md:mx-0">
-          Hi, I'm Ankit—A Product Designer Specializing In Web And Mobile Apps For FinTech, ECommerce, And SaaS. I Create User-Centric Designs That Engage Audiences And Drive Conversions. Currently Based In India.
+          Hi, I'm Ankit—A Full-Stack Web Developer from Patna, Bihar. I specialize in building robust, high-performance web applications that merge technical excellence with seamless user experiences. B.Tech CSE Graduate from LPU.
         </p>
 
         <div className="flex flex-wrap items-center justify-center md:justify-start gap-4 pt-4">
@@ -45,16 +45,16 @@ export function Hero() {
         <div className="relative w-full max-w-[500px] h-full rounded-[30px] md:rounded-[40px] overflow-hidden bg-gray-100 dark:bg-[#111] flex items-center justify-center dark:border dark:border-white/10 dark:shadow-[0_0_80px_rgba(255,255,255,0.03)]">
           {/* Base Image Wrapper */}
           <div className="absolute inset-0">
-             <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=800&fit=crop" alt="Portrait" className="w-full h-full object-cover filter grayscale contrast-125" />
+             <img src="/portrait.png" alt="Portrait" className="w-full h-full object-cover filter grayscale contrast-125" />
           </div>
           
-          {/* Frosted Glass Overlay Left Half */}
-          <div className="absolute inset-y-0 left-0 w-[55%] backdrop-blur-xl bg-white/10 flex">
+          {/* Centered Frosted Glass Overlay */}
+          <div className="absolute inset-y-0 right-0 w-1/2 backdrop-blur-xl bg-transparent flex">
              {/* Staggered vertical strips to simulate the ribbed glass effect */}
-             <div className="w-1/4 h-full bg-white/5 backdrop-blur-sm border-r border-white/10"></div>
-             <div className="w-1/4 h-full bg-white/10 backdrop-blur-md border-r border-white/10"></div>
-             <div className="w-1/4 h-full bg-white/10 backdrop-blur-lg border-r border-white/10"></div>
-             <div className="w-1/4 h-full bg-black/5 backdrop-blur-xl border-r border-white/5"></div>
+             <div className="w-1/4 h-full bg-white/[0.01] backdrop-blur-[2px] border-l border-white/[0.05]"></div>
+             <div className="w-1/4 h-full bg-white/[0.02] backdrop-blur-[4px] border-l border-white/[0.05]"></div>
+             <div className="w-1/4 h-full bg-white/[0.03] backdrop-blur-[8px] border-l border-white/[0.05]"></div>
+             <div className="w-1/4 h-full bg-black/[0.01] backdrop-blur-[12px] border-l border-white/[0.02]"></div>
            </div>
         </div>
       </div>

@@ -12,7 +12,7 @@ export function MyStory() {
 
       <div className="max-w-3xl text-center space-y-6 text-gray-700 dark:text-gray-300 text-base md:text-lg leading-relaxed mb-12 md:mb-24 px-2">
         <p>
-          I'm Ankit, A Strategic And User-Focused Product Designer With 10+ Years Of Experience. Passionate About Solving User And Product Challenges, I Leverage Design To Help Companies Meet Their Business Goals. Analytical, Results-Driven, And Highly Collaborative, I Excel At Crafting Intuitive Experiences That Drive Success.
+          I'm Ankit, A Full-Stack Web Developer who thrives on the intersection of logic and creativity. Originally from Patna, Bihar, I completed my B.Tech in Computer Science and Engineering from Lovely Professional University. My journey is fueled by a deep-seated curiosity for building systems that are both powerful and human-centric.
         </p>
       </div>
 
@@ -26,7 +26,7 @@ export function MyStory() {
              <div className="absolute top-0.5 md:top-1 -left-1 md:-left-2 w-1 md:w-2 h-3 md:h-4 border-[1px] md:border-2 border-gray-400 rounded-l-full rotate-12"></div>
              <div className="absolute top-0.5 md:top-1 -right-1 md:-right-2 w-1 md:w-2 h-3 md:h-4 border-[1px] md:border-2 border-gray-400 rounded-r-full -rotate-12"></div>
           </div>
-          <div className="w-full h-[200px] md:h-[300px] bg-gray-200 bg-[url('https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=400&h=400&fit=crop&auto=format')] bg-cover bg-center filter grayscale contrast-125"></div>
+          <div className="w-full h-[200px] md:h-[300px] bg-gray-200 bg-[url('/portrait.png')] bg-cover bg-center filter grayscale contrast-125"></div>
         </div>
 
         {/* Right Polaroid */}
@@ -38,19 +38,16 @@ export function MyStory() {
              <div className="absolute top-0.5 md:top-1 -left-1 md:-left-2 w-1 md:w-2 h-3 md:h-4 border-[1px] md:border-2 border-gray-400 rounded-l-full rotate-12"></div>
              <div className="absolute top-0.5 md:top-1 -right-1 md:-right-2 w-1 md:w-2 h-3 md:h-4 border-[1px] md:border-2 border-gray-400 rounded-r-full -rotate-12"></div>
           </div>
-          <div className="w-full h-[200px] md:h-[300px] bg-gray-200 bg-[url('https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=400&h=400&fit=crop&auto=format')] bg-cover bg-center filter grayscale contrast-125"></div>
+          <div className="w-full h-[200px] md:h-[300px] bg-gray-200 bg-[url('/portrait.png')] bg-cover bg-center filter grayscale contrast-125"></div>
         </div>
       </div>
 
       <div className="max-w-3xl text-center space-y-6 text-gray-700 dark:text-gray-300 text-base md:text-lg leading-relaxed mb-12 px-2">
         <p>
-          As Always Learning — Honing My Skills, Brought To Life Through <br />
-          Experience. To Name The Few - Emerging Startups, B2B SaaS <br />
-          Brands, Marketing Agencies And Many More.
+          Beyond the code, you'll often find me immersed in the profound pages of a philosophy book or gazing at the night sky, forever dreaming of the cosmos. I'm a die-hard cricket fan who finds as much strategy on the pitch as I do in a complex architecture.
         </p>
         <p>
-          In My Free Time, I Love Solo Adventures — Especially Long Highway <br />
-          Rides And Sitting Through The Night To See The Sunrise.
+          I believe that technology, much like the universe, is an infinite canvas of possibilities—and I'm here to build the tools that navigate it.
         </p>
       </div>
 

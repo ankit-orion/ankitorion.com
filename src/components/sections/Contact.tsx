@@ -14,7 +14,7 @@ export function Contact() {
             Let's Bring It To Life
           </h2>
           <div className="w-16 h-16 rounded-full overflow-hidden bg-gray-200 dark:bg-[#111] flex-shrink-0 hidden md:block border border-gray-100 dark:border-white/10">
-             <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=150&fit=crop" alt="avatar" className="w-full h-full object-cover filter grayscale contrast-125" />
+             <img src="/portrait.png" alt="avatar" className="w-full h-full object-cover filter grayscale contrast-125" />
           </div>
         </div>
 
