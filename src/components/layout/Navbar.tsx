@@ -3,23 +3,39 @@
 import { useState } from "react";
 import Link from "next/link";
 import { Copy, Instagram, X as XIcon, Menu, X } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
 
 const navLinks = [
   { name: "Home", href: "/" },
   { name: "Services", href: "#services" },
-  { name: "Projects", href: "#featured-projects" }, // Need to sync with section id
+  { name: "Projects", href: "#featured-projects" },
   { name: "Library", href: "#library" },
   { name: "Story", href: "#my-story" },
 ];
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [visible, setVisible] = useState(true);
+  const { scrollY } = useScroll();
+
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    const previous = scrollY.getPrevious() ?? 0;
+    if (latest > previous && latest > 150) {
+      setVisible(false);
+    } else {
+      setVisible(true);
+    }
+  });
 
   return (
     <>
-      <nav className="fixed top-4 md:top-6 left-1/2 -translate-x-1/2 z-[100] bg-white/70 dark:bg-[#0a0a0a]/70 backdrop-blur-xl px-4 md:px-6 py-2 md:py-3 rounded-full border border-black/5 dark:border-white/10 shadow-[0_10px_40px_rgba(0,0,0,0.1)] flex items-center gap-3 md:gap-6 w-[95%] sm:w-auto max-w-2xl justify-between sm:justify-center">
+      <motion.nav 
+        initial={{ y: 0 }}
+        animate={{ y: visible ? 0 : -100 }}
+        transition={{ duration: 0.3, ease: "easeInOut" }}
+        className="fixed top-4 md:top-6 left-1/2 -translate-x-1/2 z-[100] bg-white/70 dark:bg-[#0a0a0a]/70 backdrop-blur-xl px-4 md:px-6 py-2 md:py-3 rounded-full border border-black/5 dark:border-white/10 shadow-[0_10px_40px_rgba(0,0,0,0.1)] flex items-center gap-3 md:gap-6 w-[95%] sm:w-auto max-w-2xl justify-between sm:justify-center"
+      >
         
         {/* Logo Section */}
         <Link href="/" className="flex items-center gap-2 hover:scale-105 transition flex-shrink-0 group">
@@ -29,7 +45,7 @@ export function Navbar() {
           <span className="font-bold text-sm text-black dark:text-white hidden sm:block tracking-tight">Ankit Orion</span>
         </Link>
         
-        {/* Restored Social Icons (Previous Style) */}
+        {/* Social Icons */}
         <div className="hidden sm:flex items-center gap-4 text-gray-500 dark:text-gray-400 border-l border-r px-6 border-black/5 dark:border-white/10 mx-2">
           <Link href="#" className="hover:text-black dark:hover:text-white transition group">
             <XIcon className="w-4 h-4 group-hover:scale-110 transition" />
@@ -61,7 +77,7 @@ export function Navbar() {
             <Menu className="w-5 h-5" />
           </button>
         </div>
-      </nav>
+      </motion.nav>
 
       {/* MOBILE DRAWER */}
       <AnimatePresence>
@@ -83,7 +99,7 @@ export function Navbar() {
                </button>
             </div>
 
-            {/* Navigation Pile */}
+            {/* Navigation Links */}
             <div className="flex flex-col gap-8 flex-1">
                {navLinks.map((link, idx) => (
                  <motion.div

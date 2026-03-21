@@ -6,7 +6,7 @@ export function Footer() {
   
   return (
     <footer className="w-full border-t border-black/5 dark:border-white/10 bg-white dark:bg-[#050505] py-8">
-      <div className="max-w-7xl mx-auto px-4 md:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
+      <div className="max-w-4xl mx-auto px-4 md:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
         
         {/* Left: Minimal Brand Label */}
         <div className="flex items-center gap-4">
