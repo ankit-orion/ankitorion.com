@@ -6,7 +6,7 @@ export function MyStory() {
     <section id="my-story" className="relative w-full">
       <SectionCornerMarks />
       <div className="py-20 md:py-32 px-4 md:px-8 max-w-4xl mx-auto flex flex-col items-center">
-      <h2 className="text-4xl font-medium mb-12">
+      <h2 className="text-2xl sm:text-3xl md:text-4xl font-medium mb-8 md:mb-12">
         My <span className="font-bold">Story</span>
       </h2>
 
@@ -16,9 +16,9 @@ export function MyStory() {
         </p>
       </div>
 
-      <div className="relative w-full max-w-2xl h-[400px] md:h-[500px] flex justify-center items-center mb-16 md:mb-24 px-4 overflow-hidden md:overflow-visible">
+      <div className="relative w-full max-w-2xl h-[280px] sm:h-[360px] md:h-[500px] flex justify-center items-center mb-12 md:mb-24 px-4 overflow-hidden md:overflow-visible">
         {/* Left Polaroid */}
-        <div className="absolute md:left-[10%] -translate-x-12 md:-translate-x-0 rotate-[-6deg] z-10 w-[200px] md:w-[300px] bg-white dark:bg-[#111] p-3 md:p-4 pb-8 md:pb-12 shadow-[0_10px_40px_rgba(0,0,0,0.1)] dark:shadow-[0_20px_60px_rgba(255,255,255,0.03)] rounded-sm transform hover:rotate-[-3deg] hover:scale-105 transition duration-500 ease-out border border-black/5 dark:border-white/10">
+        <div className="absolute md:left-[10%] -translate-x-8 sm:-translate-x-12 md:-translate-x-0 rotate-[-6deg] z-10 w-[140px] sx:w-[170px] sm:w-[200px] md:w-[300px] bg-white dark:bg-[#111] p-2 sm:p-3 md:p-4 pb-6 sm:pb-8 md:pb-12 shadow-[0_10px_40px_rgba(0,0,0,0.1)] dark:shadow-[0_20px_60px_rgba(255,255,255,0.03)] rounded-sm transform hover:rotate-[-3deg] hover:scale-105 transition duration-500 ease-out border border-black/5 dark:border-white/10">
           {/* Top Clip */}
           <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-6 md:w-8 h-4 md:h-6 bg-gray-800 rounded-sm shadow-xl flex items-center justify-center">
              <div className="w-4 md:w-6 h-1 bg-gray-600 rounded-full"></div>
@@ -26,11 +26,11 @@ export function MyStory() {
              <div className="absolute top-0.5 md:top-1 -left-1 md:-left-2 w-1 md:w-2 h-3 md:h-4 border-[1px] md:border-2 border-gray-400 rounded-l-full rotate-12"></div>
              <div className="absolute top-0.5 md:top-1 -right-1 md:-right-2 w-1 md:w-2 h-3 md:h-4 border-[1px] md:border-2 border-gray-400 rounded-r-full -rotate-12"></div>
           </div>
-          <div className="w-full h-[200px] md:h-[300px] bg-gray-200 bg-[url('/portrait.png')] bg-cover bg-center filter grayscale contrast-125"></div>
+          <div className="w-full h-[140px] sx:h-[170px] sm:h-[200px] md:h-[300px] bg-gray-200 bg-[url('/portrait.png')] bg-cover bg-center filter grayscale contrast-125"></div>
         </div>
 
         {/* Right Polaroid */}
-        <div className="absolute md:right-[10%] translate-x-12 md:translate-x-0 rotate-[6deg] z-20 w-[200px] md:w-[300px] bg-white dark:bg-[#111] p-3 md:p-4 pb-8 md:pb-12 shadow-[0_10px_40px_rgba(0,0,0,0.1)] dark:shadow-[0_20px_60px_rgba(255,255,255,0.03)] rounded-sm transform hover:rotate-[3deg] hover:scale-105 transition duration-500 ease-out border border-black/5 dark:border-white/10">
+        <div className="absolute md:right-[10%] translate-x-8 sm:translate-x-12 md:translate-x-0 rotate-[6deg] z-20 w-[140px] sx:w-[170px] sm:w-[200px] md:w-[300px] bg-white dark:bg-[#111] p-2 sm:p-3 md:p-4 pb-6 sm:pb-8 md:pb-12 shadow-[0_10px_40px_rgba(0,0,0,0.1)] dark:shadow-[0_20px_60px_rgba(255,255,255,0.03)] rounded-sm transform hover:rotate-[3deg] hover:scale-105 transition duration-500 ease-out border border-black/5 dark:border-white/10">
           {/* Top Clip */}
           <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-6 md:w-8 h-4 md:h-6 bg-gray-800 rounded-sm shadow-xl flex items-center justify-center">
              <div className="w-4 md:w-6 h-1 bg-gray-600 rounded-full"></div>
@@ -38,7 +38,7 @@ export function MyStory() {
              <div className="absolute top-0.5 md:top-1 -left-1 md:-left-2 w-1 md:w-2 h-3 md:h-4 border-[1px] md:border-2 border-gray-400 rounded-l-full rotate-12"></div>
              <div className="absolute top-0.5 md:top-1 -right-1 md:-right-2 w-1 md:w-2 h-3 md:h-4 border-[1px] md:border-2 border-gray-400 rounded-r-full -rotate-12"></div>
           </div>
-          <div className="w-full h-[200px] md:h-[300px] bg-gray-200 bg-[url('/portrait.png')] bg-cover bg-center filter grayscale contrast-125"></div>
+          <div className="w-full h-[140px] sx:h-[170px] sm:h-[200px] md:h-[300px] bg-gray-200 bg-[url('/portrait.png')] bg-cover bg-center filter grayscale contrast-125"></div>
         </div>
       </div>
 

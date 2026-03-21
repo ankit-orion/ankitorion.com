@@ -49,7 +49,7 @@ export function BookSection() {
   return (
     <section id="library" className="relative w-full overflow-hidden bg-white dark:bg-[#050505] py-20 md:py-32">
       <SectionCornerMarks />
-      <div className="px-4 md:px-8 max-w-4xl mx-auto flex flex-col lg:flex-row items-center gap-16 md:gap-24">
+      <div className="px-4 md:px-8 max-w-4xl mx-auto flex flex-col lg:flex-row items-center gap-8 sm:gap-12 lg:gap-24">
         
         {/* Left Content */}
         <div className="flex-1 space-y-8 text-center lg:text-left">
@@ -58,7 +58,7 @@ export function BookSection() {
              <span className="text-[10px] font-bold uppercase tracking-[0.4em] text-gray-500">Live Reading Scroll</span>
           </div>
 
-          <h2 className="text-5xl md:text-7xl font-medium tracking-tight dark:text-white leading-[1.05]">
+          <h2 className="text-3xl sx:text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-medium tracking-tight dark:text-white leading-[1.05]">
             Books I'm Reading <br />
             <span className="font-bold">& Personal</span> <br />
             <span className="text-gray-400 dark:text-gray-600 italic">Favourites.</span>
@@ -79,7 +79,7 @@ export function BookSection() {
         </div>
 
         {/* Right Content: Hyper-Realistic Portrait Stack */}
-        <div className="flex-1 relative h-[550px] md:h-[650px] w-full max-w-[450px] flex items-center justify-center perspective-[3000px]">
+        <div className="flex-1 relative h-[380px] sm:h-[480px] md:h-[550px] lg:h-[650px] w-full max-w-[450px] flex items-center justify-center perspective-[3000px]">
           
           <AnimatePresence mode="popLayout">
             {[index, (index + 1) % curatedBooks.length, (index + 2) % curatedBooks.length].reverse().map((bookIdx, i) => {
@@ -137,14 +137,14 @@ export function BookSection() {
                     <div className="absolute left-0 top-0 bottom-0 w-[45px] bg-gradient-to-r from-black/20 via-transparent to-transparent z-10 rounded-l-[35px]" />
 
                     {/* Book Cover Content */}
-                    <div className="absolute inset-0 p-8 md:p-12 pl-16 flex flex-col justify-between h-full bg-inherit rounded-r-[15px] rounded-l-[35px] overflow-hidden">
+                    <div className="absolute inset-0 p-4 sm:p-6 md:p-8 lg:p-12 pl-12 sm:pl-14 md:pl-16 flex flex-col justify-between h-full bg-inherit rounded-r-[15px] rounded-l-[35px] overflow-hidden">
                        <div className="space-y-4">
                           <div className="flex items-center gap-3 mb-2">
                              <div className={`w-1.5 h-1.5 rounded-full ${book.hue === 'white' ? 'bg-black/20' : 'bg-white/20'}`} />
                              <span className={`text-[10px] font-bold uppercase tracking-[0.5em] ${book.hue === 'white' ? 'text-gray-300' : 'text-gray-800'}`}>Lib Index 0{book.id}</span>
                           </div>
                           
-                          <h3 className={`text-2xl md:text-5xl font-bold uppercase tracking-tighter leading-none ${book.hue === 'white' ? 'text-black' : 'text-white'}`}>
+                          <h3 className={`text-lg sx:text-xl sm:text-2xl md:text-3xl lg:text-5xl font-bold uppercase tracking-tighter leading-none ${book.hue === 'white' ? 'text-black' : 'text-white'}`}>
                             {book.title}
                           </h3>
                        </div>
@@ -154,7 +154,7 @@ export function BookSection() {
                          animate={isFront ? { opacity: 1, y: 0 } : { opacity: 0, y: 15 }}
                          className="space-y-6"
                        >
-                          <p className={`text-base md:text-2xl font-serif italic font-medium leading-[1.6] ${book.hue === 'white' ? 'text-gray-700' : 'text-gray-300'}`}>
+                          <p className={`text-xs sm:text-sm md:text-base lg:text-2xl font-serif italic font-medium leading-[1.6] ${book.hue === 'white' ? 'text-gray-700' : 'text-gray-300'}`}>
                             "{book.quote}"
                           </p>
                           <div className="flex items-center gap-4">

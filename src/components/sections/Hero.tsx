@@ -42,7 +42,7 @@ export function Hero() {
             Available for Freelance
           </div>
 
-          <h1 className="text-3xl md:text-5xl lg:text-[64px] font-bold leading-[1.1] tracking-tight text-[#1a1a1a] dark:text-white">
+          <h1 className="text-2xl sx:text-3xl md:text-5xl lg:text-[64px] font-bold leading-[1.1] tracking-tight text-[#1a1a1a] dark:text-white">
             Code First.
             <br />
             Everything Else
@@ -54,7 +54,7 @@ export function Hero() {
             variants={container}
             initial="hidden"
             animate="visible"
-            className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 max-w-lg leading-relaxed font-handwriting min-h-[140px]"
+            className="text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-lg leading-relaxed font-handwriting min-h-[120px] md:min-h-[140px]"
           >
             {bioText.split("").map((char, index) => (
               <motion.span key={index} variants={child}>
@@ -66,7 +66,7 @@ export function Hero() {
           <div className="flex flex-wrap items-center gap-4 pt-4">
             <Link
               href="#contact"
-              className="flex items-center gap-3 bg-[#111] dark:bg-white text-white dark:text-black px-10 py-5 rounded-full font-bold hover:bg-black dark:hover:bg-gray-100 transition shadow-2xl scale-105 active:scale-95"
+              className="flex items-center gap-3 bg-[#111] dark:bg-white text-white dark:text-black px-6 sm:px-10 py-4 sm:py-5 rounded-full font-bold hover:bg-black dark:hover:bg-gray-100 transition shadow-2xl scale-105 active:scale-95"
             >
               <span>Contact Me</span>
               <ArrowRight className="w-5 h-5" />
@@ -74,7 +74,7 @@ export function Hero() {
           </div>
         </div>
 
-        <div className="relative w-full h-[450px] sm:h-[600px] md:flex-[1.4] md:h-[750px] flex justify-center md:justify-end order-1 md:order-2">
+        <div className="relative w-full h-[300px] sx:h-[380px] sm:h-[480px] md:flex-[1.4] md:h-[750px] flex justify-center md:justify-end order-1 md:order-2">
           {/* Main Portrait Container */}
           <div className="relative w-full max-w-[450px] md:max-w-none h-full rounded-[40px] md:rounded-[60px] overflow-hidden bg-gray-50 dark:bg-[#0a0a0a] flex items-center justify-center border border-black/5 dark:border-white/5 shadow-2xl">
             {/* The base portrait image */}

@@ -100,10 +100,10 @@ export function Navbar() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[200] bg-white/95 dark:bg-black/95 backdrop-blur-2xl lg:hidden flex flex-col p-8 md:p-12"
+            className="fixed inset-0 z-[200] bg-white/95 dark:bg-black/95 backdrop-blur-2xl lg:hidden flex flex-col p-6 sm:p-8 md:p-12 overflow-y-auto"
           >
             {/* Drawer Header */}
-            <div className="flex justify-between items-center mb-20">
+            <div className="flex justify-between items-center mb-10 sm:mb-20">
                <span className="font-bold text-lg tracking-tighter dark:text-white">Ankit Orion</span>
                <button 
                  onClick={() => setIsOpen(false)}
@@ -114,7 +114,7 @@ export function Navbar() {
             </div>
 
             {/* Navigation Links */}
-            <div className="flex flex-col gap-8 flex-1">
+            <div className="flex flex-col gap-5 sm:gap-8 flex-1">
                {navLinks.map((link, idx) => (
                  <motion.div
                    key={link.name}
@@ -125,7 +125,7 @@ export function Navbar() {
                    <Link 
                      href={link.href} 
                      onClick={() => setIsOpen(false)}
-                     className="text-4xl md:text-6xl font-bold dark:text-white tracking-tighter hover:text-gray-400 transition"
+                     className="text-2xl sx:text-3xl sm:text-4xl md:text-6xl font-bold dark:text-white tracking-tighter hover:text-gray-400 transition"
                    >
                      {link.name}
                    </Link>

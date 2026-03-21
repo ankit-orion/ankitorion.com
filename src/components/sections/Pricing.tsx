@@ -9,7 +9,7 @@ export function Pricing() {
       <SectionCornerMarks />
       <div className="py-16 md:py-24 px-4 md:px-8 max-w-4xl mx-auto">
       <div className="text-center mb-12">
-        <h2 className="text-4xl font-medium mb-8">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-medium mb-8">
           What Can I <span className="font-bold">Serve You?</span>
         </h2>
         

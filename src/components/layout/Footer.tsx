@@ -20,17 +20,17 @@ export function Footer() {
         </div>
 
         {/* Right: Social Minimal Icons */}
-        <div className="flex items-center gap-6">
-           <Link href="#" className="text-gray-400 dark:text-gray-600 hover:text-black dark:hover:text-white transition">
+        <div className="flex items-center gap-2">
+           <Link href="#" className="min-w-[44px] min-h-[44px] flex items-center justify-center text-gray-400 dark:text-gray-600 hover:text-black dark:hover:text-white transition">
              <Twitter className="w-4 h-4" />
            </Link>
-           <Link href="#" className="text-gray-400 dark:text-gray-600 hover:text-black dark:hover:text-white transition">
+           <Link href="#" className="min-w-[44px] min-h-[44px] flex items-center justify-center text-gray-400 dark:text-gray-600 hover:text-black dark:hover:text-white transition">
              <Instagram className="w-4 h-4" />
            </Link>
-           <Link href="#" className="text-gray-400 dark:text-gray-600 hover:text-black dark:hover:text-white transition">
+           <Link href="#" className="min-w-[44px] min-h-[44px] flex items-center justify-center text-gray-400 dark:text-gray-600 hover:text-black dark:hover:text-white transition">
              <Linkedin className="w-4 h-4" />
            </Link>
-           <Link href="#" className="text-gray-400 dark:text-gray-600 hover:text-black dark:hover:text-white transition">
+           <Link href="#" className="min-w-[44px] min-h-[44px] flex items-center justify-center text-gray-400 dark:text-gray-600 hover:text-black dark:hover:text-white transition">
              <Github className="w-4 h-4" />
            </Link>
         </div>

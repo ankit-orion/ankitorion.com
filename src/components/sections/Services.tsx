@@ -37,7 +37,7 @@ export function Services() {
       <SectionCornerMarks />
       <div className="py-20 md:py-32 px-4 md:px-8 max-w-5xl mx-auto">
         <div className="text-center mb-16 space-y-4">
-          <h2 className="text-3xl md:text-5xl font-bold tracking-tight dark:text-white">
+          <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold tracking-tight dark:text-white">
             What I <span className="text-gray-400 dark:text-gray-500 font-medium">Can Do For You</span>
           </h2>
           <p className="text-gray-500 dark:text-gray-400 max-w-2xl mx-auto text-base md:text-lg leading-relaxed">
@@ -45,7 +45,7 @@ export function Services() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
           {services.map((service, index) => (
             <motion.div
               key={index}
@@ -53,7 +53,7 @@ export function Services() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1, duration: 0.5, ease: "easeOut" }}
-              className="group p-8 rounded-3xl border border-gray-100 dark:border-white/10 bg-white dark:bg-[#111] hover:border-gray-200 dark:hover:border-white/20 hover:shadow-2xl hover:shadow-gray-200/50 dark:hover:shadow-none transition-all duration-300"
+              className="group p-6 md:p-8 rounded-3xl border border-gray-100 dark:border-white/10 bg-white dark:bg-[#111] hover:border-gray-200 dark:hover:border-white/20 hover:shadow-2xl hover:shadow-gray-200/50 dark:hover:shadow-none transition-all duration-300"
             >
               <div className={`w-14 h-14 rounded-2xl ${service.color} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
                 <service.icon className="w-7 h-7" />
