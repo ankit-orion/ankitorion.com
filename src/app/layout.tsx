@@ -29,11 +29,20 @@ export const metadata: Metadata = {
     siteName: "Ankit Orion",
     locale: "en_US",
     type: "website",
+    images: [
+      {
+        url: "https://ankitorion.dev/preview-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Ankit Orion - Full-Stack Web Developer",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Ankit Orion | Full-Stack Web Developer",
     description: "Building fast, modern web apps with React, Next.js, Node.js and more.",
+    images: ["https://ankitorion.dev/preview-image.png"],
   },
   robots: { index: true, follow: true },
 };
