@@ -1,6 +1,5 @@
 import { Navbar } from "@/components/layout/Navbar";
 import { Hero } from "@/components/sections/Hero";
-import { QuoteSection } from "@/components/sections/QuoteSection";
 import { LogoTicker } from "@/components/sections/LogoTicker";
 import { Services } from "@/components/sections/Services";
 import { FeaturedProjects } from "@/components/sections/FeaturedProjects";
@@ -18,7 +17,6 @@ export default function Home() {
       <GlobalGrid />
       <Navbar />
       <Hero />
-      <QuoteSection />
       <LogoTicker />
       <Services />
       <FeaturedProjects />

@@ -63,7 +63,21 @@ export default function RootLayout({
           <ScrollProgress />
           {children}
           <BackToTop />
-          <Toaster richColors position="bottom-right" />
+          <Toaster
+            position="bottom-center"
+            expand={false}
+            closeButton
+            toastOptions={{
+              style: {
+                borderRadius: "14px",
+                fontWeight: "600",
+                fontSize: "14px",
+              },
+              classNames: {
+                error: "!bg-neutral-900 !text-white !border-neutral-700",
+              },
+            }}
+          />
         </ThemeProvider>
       </body>
     </html>

@@ -16,6 +16,7 @@ export function Contact() {
 
   const [msgForm, setMsgForm] = useState({ name: "", email: "", message: "" });
   const [msgErrors, setMsgErrors] = useState<{ name?: string; email?: string; message?: string }>({});
+  const [sending, setSending] = useState(false);
 
   const validateMsg = () => {
     const errs: { name?: string; email?: string; message?: string } = {};
@@ -28,7 +29,7 @@ export function Contact() {
     return errs;
   };
 
-  const handleMsgSubmit = (e: React.FormEvent) => {
+  const handleMsgSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const errs = validateMsg();
     if (Object.keys(errs).length > 0) {
@@ -36,9 +37,21 @@ export function Contact() {
       return;
     }
     setMsgErrors({});
-    // TODO: send msgForm to backend API
-    toast.success("Inquiry sent!", { description: "I'll respond within 24 hours." });
-    setMsgForm({ name: "", email: "", message: "" });
+    setSending(true);
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(msgForm),
+      });
+      if (!res.ok) throw new Error();
+      toast.success("Inquiry sent!", { description: "I'll respond within 24 hours." });
+      setMsgForm({ name: "", email: "", message: "" });
+    } catch {
+      toast.error("Failed to send", { description: "Please try again or email me directly." });
+    } finally {
+      setSending(false);
+    }
   };
 
   useEffect(() => {
@@ -74,8 +87,8 @@ export function Contact() {
           <div className="flex-1 space-y-6 md:space-y-8 text-center lg:text-left">
             <div className="flex flex-col lg:flex-row items-center lg:items-start gap-5 md:gap-6">
               <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold tracking-tighter leading-[1.05] dark:text-white">
-                Your <span className="text-gray-400 dark:text-gray-600 font-medium italic">Vision.</span><br />
-                My <span className="text-black dark:text-white">Creation.</span>
+                Let&apos;s <span className="text-gray-400 dark:text-gray-600 font-medium italic">Build</span><br />
+                Something.
               </h2>
               <div className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden bg-gray-100 dark:bg-[#111] flex-shrink-0 border-2 border-black/5 dark:border-white/10 hidden sm:block">
                  <Image src="/portrait.png" alt="Ankit Orion" fill className="object-cover filter grayscale contrast-125" />
@@ -83,7 +96,7 @@ export function Contact() {
             </div>
 
             <p className="text-gray-600 dark:text-gray-400 text-base md:text-xl leading-relaxed max-w-2xl mx-auto lg:mx-0">
-              Doesn't Matter If You Do Not Understand Code Or Structure Of The Business Online. Just Share With Me Some Specific Things You Fancy Or You Would Want To Understand; Like Specific Competitor Strategies, Missing Points Or Features You Would Like To See To Build The App Better.
+              Have an idea, a project, or just want to talk? I&apos;m open to freelance work, collaborations, and interesting problems.
             </p>
 
             {/* View Selector Buttons */}
@@ -223,22 +236,34 @@ export function Contact() {
                        <div className="space-y-2">
                           <label className="text-[10px] uppercase font-black tracking-widest text-gray-600 dark:text-gray-300 flex items-center gap-2"><User className="w-3 h-3"/> Name</label>
                           <input type="text" placeholder="John Doe" value={msgForm.name} onChange={(e) => setMsgForm({ ...msgForm, name: e.target.value })} className="w-full bg-white dark:bg-white/5 px-4 md:px-5 py-3 md:py-4 rounded-2xl border-2 border-gray-200 dark:border-white/20 focus:border-black dark:focus:border-white transition-all text-gray-900 dark:text-gray-100 placeholder:text-gray-400 dark:placeholder:text-gray-500 font-medium" required />
-                          {msgErrors.name && <p className="text-xs text-red-500">{msgErrors.name}</p>}
+                          {msgErrors.name && <p className="text-xs text-neutral-400 dark:text-neutral-500">{msgErrors.name}</p>}
                        </div>
                        <div className="space-y-2">
                           <label className="text-[10px] uppercase font-black tracking-widest text-gray-600 dark:text-gray-300 flex items-center gap-2"><Mail className="w-3 h-3"/> Email</label>
                           <input type="email" placeholder="john@example.com" value={msgForm.email} onChange={(e) => setMsgForm({ ...msgForm, email: e.target.value })} className="w-full bg-white dark:bg-white/5 px-4 md:px-5 py-3 md:py-4 rounded-2xl border-2 border-gray-200 dark:border-white/20 focus:border-black dark:focus:border-white transition-all text-gray-900 dark:text-gray-100 placeholder:text-gray-400 dark:placeholder:text-gray-500 font-medium" required />
-                          {msgErrors.email && <p className="text-xs text-red-500">{msgErrors.email}</p>}
+                          {msgErrors.email && <p className="text-xs text-neutral-400 dark:text-neutral-500">{msgErrors.email}</p>}
                        </div>
                     </div>
                     <div className="space-y-2">
                         <label className="text-[10px] uppercase font-black tracking-widest text-gray-600 dark:text-gray-300 flex items-center gap-2"><MessageSquare className="w-3 h-3"/> Your Vision</label>
                         <textarea placeholder="Tell me about your project..." rows={4} value={msgForm.message} onChange={(e) => setMsgForm({ ...msgForm, message: e.target.value })} className="w-full bg-white dark:bg-white/5 px-4 md:px-5 py-3 md:py-4 rounded-2xl border-2 border-gray-200 dark:border-white/20 focus:border-black dark:focus:border-white transition-all text-gray-900 dark:text-gray-100 placeholder:text-gray-400 dark:placeholder:text-gray-500 font-medium resize-none" required></textarea>
-                        {msgErrors.message && <p className="text-xs text-red-500">{msgErrors.message}</p>}
+                        {msgErrors.message && <p className="text-xs text-neutral-400 dark:text-neutral-500">{msgErrors.message}</p>}
                     </div>
-                    <button type="submit" className="w-full bg-black dark:bg-white text-white dark:text-black py-4 md:py-5 rounded-2xl font-black flex items-center justify-center gap-2 md:gap-3 hover:scale-[1.02] transition shadow-xl group">
-                       <span>Send Inquiry</span>
-                       <Send className="w-5 h-5 group-hover:-translate-y-1 group-hover:translate-x-1 transition-transform" />
+                    <button type="submit" disabled={sending} className="w-full bg-black dark:bg-white text-white dark:text-black py-4 md:py-5 rounded-2xl font-black flex items-center justify-center gap-2 md:gap-3 hover:scale-[1.02] transition shadow-xl group disabled:opacity-60 disabled:pointer-events-none disabled:scale-100">
+                       {sending ? (
+                         <>
+                           <svg className="w-5 h-5 animate-spin" viewBox="0 0 24 24" fill="none">
+                             <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                             <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z" />
+                           </svg>
+                           <span>Sending...</span>
+                         </>
+                       ) : (
+                         <>
+                           <span>Send Inquiry</span>
+                           <Send className="w-5 h-5 group-hover:-translate-y-1 group-hover:translate-x-1 transition-transform" />
+                         </>
+                       )}
                     </button>
                  </form>
               </div>
