@@ -25,13 +25,13 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Ankit Orion | Full-Stack Web Developer",
     description: "Building fast, modern web apps with React, Next.js, Node.js and more.",
-    url: "https://ankitorion.dev",
+    url: "https://ankitorion.vercel.app",
     siteName: "Ankit Orion",
     locale: "en_US",
     type: "website",
     images: [
       {
-        url: "https://ankitorion.dev/preview-image.png",
+        url: "https://ankitorion.vercel.app/preview-image.png",
         width: 1200,
         height: 630,
         alt: "Ankit Orion - Full-Stack Web Developer",
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Ankit Orion | Full-Stack Web Developer",
     description: "Building fast, modern web apps with React, Next.js, Node.js and more.",
-    images: ["https://ankitorion.dev/preview-image.png"],
+    images: ["https://ankitorion.vercel.app/preview-image.png"],
   },
   robots: { index: true, follow: true },
 };
