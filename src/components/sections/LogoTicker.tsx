@@ -23,7 +23,7 @@ const techs = [
   { name: "Angular",      icon: "/SVG Icons/Angular.svg" },
   { name: "Appwrite",     icon: "/SVG Icons/Appwrite.svg" },
   { name: "Postman",      icon: "/SVG Icons/Postman.svg" },
-  { name: "C++",          icon: "/SVG Icons/C++ (CPlusPlus).svg" },
+  { name: "C++",          icon: "/SVG Icons/cpp.svg" },
 ];
 
 export function LogoTicker() {
