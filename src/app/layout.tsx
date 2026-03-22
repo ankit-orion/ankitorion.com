@@ -6,6 +6,7 @@ import { ThemeProvider } from "@/components/ui/theme-provider";
 import { Toaster } from "sonner";
 import { ScrollProgress } from "@/components/ui/ScrollProgress";
 import { BackToTop } from "@/components/ui/BackToTop";
+import { PageLoader } from "@/components/ui/PageLoader";
 
 const outfit = OutfitFont({
   subsets: ["latin"],
@@ -58,6 +59,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          <PageLoader />
           <ScrollProgress />
           {children}
           <BackToTop />

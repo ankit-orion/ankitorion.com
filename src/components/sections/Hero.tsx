@@ -89,7 +89,6 @@ export function Hero() {
 
             {/* Split "Ribbed Glass" Effect Overlay */}
             <div className="absolute inset-y-0 right-0 w-1/2 flex h-full">
-              {/* This mimics the vertical striping seen in the screenshot */}
               {[...Array(10)].map((_, i) => (
                 <div
                   key={i}

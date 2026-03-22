@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { Copy, Instagram, X as XIcon, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
 
@@ -88,30 +88,20 @@ export function Navbar() {
           </div>
   
           {/* Right Column: Actions */}
-          <div className="flex items-center justify-end gap-2 sm:gap-4 flex-shrink-0">
-            {/* Social Icons for Mobile only */}
-            <div className="flex lg:hidden items-center gap-2 sm:gap-4 text-gray-500 dark:text-gray-400 mr-2 sm:mr-4 pr-2 sm:pr-4 border-r border-black/5 dark:border-white/10">
-              <Link href="#" className="hover:text-black dark:hover:text-white transition group flex items-center">
-                <XIcon className="w-4 h-4 sm:w-5 sm:h-5 group-hover:scale-110 transition" />
-              </Link>
-              <Link href="#" className="hover:text-black dark:hover:text-white transition group flex items-center">
-                <Instagram className="w-4 h-4 sm:w-5 sm:h-5 group-hover:scale-110 transition" />
-              </Link>
-            </div>
-  
+          <div className="flex items-center justify-end gap-3 flex-shrink-0">
             <ThemeToggle />
-            
+
             <Link
               href="#contact"
-              className="hidden sx:block bg-[#1a1a1a] dark:bg-white text-white dark:text-black px-4 sm:px-5 py-2 rounded-full text-[10px] sm:text-xs font-bold uppercase tracking-wider hover:bg-black dark:hover:bg-gray-200 transition text-center shadow-lg whitespace-nowrap"
+              className="hidden sx:block bg-[#1a1a1a] dark:bg-white text-white dark:text-black px-4 py-2 rounded-full text-xs font-semibold hover:opacity-80 transition whitespace-nowrap"
             >
-              Book Now
+              Contact
             </Link>
-  
+
             {/* Mobile Menu Trigger */}
-            <button 
+            <button
               onClick={() => setIsOpen(true)}
-              className="lg:hidden p-2 rounded-full border border-black/5 dark:border-white/10 bg-black/5 dark:bg-white/5 text-black dark:text-white hover:bg-black/10 transition"
+              className="lg:hidden p-2 rounded-full text-gray-600 dark:text-gray-400 hover:bg-black/5 dark:hover:bg-white/5 transition"
             >
               <Menu className="w-5 h-5" />
             </button>
@@ -159,17 +149,12 @@ export function Navbar() {
                ))}
             </div>
 
-            {/* Social Links Footer */}
-            <div className="pt-12 border-t border-black/5 dark:border-white/10 flex justify-between items-center">
-               <div className="flex gap-6">
-                  <Link href="#" className="dark:text-white"><XIcon className="w-6 h-6" /></Link>
-                  <Link href="#" className="dark:text-white"><Instagram className="w-6 h-6" /></Link>
-                  <Link href="#" className="dark:text-white"><Copy className="w-6 h-6" /></Link>
-               </div>
-               <Link 
-                 href="#contact" 
+            {/* Drawer Footer */}
+            <div className="pt-12 border-t border-black/5 dark:border-white/10 flex justify-end">
+               <Link
+                 href="#contact"
                  onClick={() => setIsOpen(false)}
-                 className="text-sm font-bold uppercase tracking-[0.2em] dark:text-white border-b border-black dark:border-white pb-1"
+                 className="text-sm font-semibold text-black dark:text-white border-b border-black dark:border-white pb-1"
                >
                  Get in Touch
                </Link>

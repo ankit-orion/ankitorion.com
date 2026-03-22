@@ -124,6 +124,11 @@ export function FeaturedProjects() {
 
   const isMobile = typeof window !== 'undefined' && window.innerWidth < 640;
 
+  // Heading fades in when section enters, fades out as section exits — so it
+  // always leaves together with the last card instead of staying stuck behind.
+  const headingOpacity = useTransform(scrollYProgress, [0, 0.04, 0.82, 0.95], [0, 1, 1, 0]);
+  const headingY = useTransform(scrollYProgress, [0.82, 0.95], [0, -40]);
+
   // Measure actual heading height so cards always start just below it
   const [cardTop, setCardTop] = useState(isMobile ? 140 : 200);
   useEffect(() => {
@@ -186,15 +191,19 @@ export function FeaturedProjects() {
     >
       <SectionCornerMarks />
 
-      <div className="pt-12 md:pt-24 pb-20 px-6 sm:px-12 md:px-16 lg:px-24 xl:px-32 max-w-5xl mx-auto">
+      {/* Fixed heading — opacity + y controlled by scroll so it exits with the last card */}
+      <motion.div
+        ref={headingRef}
+        style={{ opacity: headingOpacity, y: headingY }}
+        className="fixed top-[64px] left-0 right-0 z-[55] bg-white dark:bg-[#050505] py-5 md:py-7 px-6 sm:px-12 md:px-16 lg:px-24 xl:px-32 pointer-events-none"
+      >
+        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-medium text-center text-gray-800 dark:text-gray-200 tracking-tight leading-tight">
+          Some <span className="font-bold text-black dark:text-white italic">Of My</span>{" "}
+          Featured Project
+        </h2>
+      </motion.div>
 
-        {/* Sticky heading — stays visible while all cards are in view */}
-        <div ref={headingRef} className="sticky top-[64px] z-[55] bg-white dark:bg-[#050505] py-5 md:py-7 -mx-6 sm:-mx-12 md:-mx-16 lg:-mx-24 xl:-mx-32 px-6 sm:px-12 md:px-16 lg:px-24 xl:px-32">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-medium text-center text-gray-800 dark:text-gray-200 tracking-tight leading-tight">
-            Some <span className="font-bold text-black dark:text-white italic">Of My</span>{" "}
-            Featured Project
-          </h2>
-        </div>
+      <div className="pt-12 md:pt-24 px-6 sm:px-12 md:px-16 lg:px-24 xl:px-32 max-w-5xl mx-auto">
 
         <div className="relative">
           {projects.map((project, i) => {
@@ -227,10 +236,12 @@ export function FeaturedProjects() {
               </div>
             );
           })}
-
-          <div className="h-[40vh] pointer-events-none" />
         </div>
       </div>
+
+      {/* Spacer outside the heading's parent — extends section for scroll tracking
+          without keeping the heading sticky after the last card */}
+      <div className="h-[40vh] pointer-events-none" />
     </section>
   );
 }
