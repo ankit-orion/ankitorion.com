@@ -19,7 +19,7 @@ import {
   Github,
   Link as LinkIcon
 } from "lucide-react";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import {
   motion,
   useScroll,
@@ -43,8 +43,7 @@ const projects = [
     color: "bg-[#e0efff]", // Light blue
     shadow: "shadow-blue-200/50",
     previewTitle: "Interactive Coding Platform",
-    previewImage:
-      "https://images.unsplash.com/photo-1542831371-29b0f74f9713?q=80&w=600",
+    previewImage: "/vertex.png",
   },
   {
     id: 2,
@@ -60,7 +59,7 @@ const projects = [
     shadow: "shadow-purple-200/50",
     previewTitle: "Agency Client Dashboard",
     previewImage:
-      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=600",
+      "/socialmedia.png",
   },
   {
     id: 3,
@@ -76,7 +75,7 @@ const projects = [
     shadow: "shadow-green-200/50",
     previewTitle: "Global Edge Network Dashboard",
     previewImage:
-      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=600",
+      "/DeployFast.png",
   },
   {
     id: 4,
@@ -92,7 +91,7 @@ const projects = [
     shadow: "shadow-yellow-200/40",
     previewTitle: "Real-time Infinite Canvas",
     previewImage:
-      "https://images.unsplash.com/photo-1543286386-713bdd548da4?q=80&w=600",
+      "/eraser.png",
   },
 ];
 
@@ -117,6 +116,7 @@ const getSkillIcon = (skill: string) => {
 
 export function FeaturedProjects() {
   const containerRef = useRef<HTMLElement>(null);
+  const headingRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"],
@@ -124,6 +124,21 @@ export function FeaturedProjects() {
 
   const isMobile = typeof window !== 'undefined' && window.innerWidth < 640;
 
+  // Measure actual heading height so cards always start just below it
+  const [cardTop, setCardTop] = useState(isMobile ? 140 : 200);
+  useEffect(() => {
+    if (!headingRef.current) return;
+    const update = () => {
+      if (headingRef.current) {
+        // 64px = navbar height; 8px = small gap
+        setCardTop(headingRef.current.offsetHeight + 64 + 8);
+      }
+    };
+    update();
+    const ro = new ResizeObserver(update);
+    ro.observe(headingRef.current);
+    return () => ro.disconnect();
+  }, []);
 
   const [flyingCards, setFlyingCards] = useState<{ id: number; dir: number }[]>(
     [],
@@ -172,10 +187,14 @@ export function FeaturedProjects() {
       <SectionCornerMarks />
 
       <div className="pt-12 md:pt-24 pb-20 px-6 sm:px-12 md:px-16 lg:px-24 xl:px-32 max-w-5xl mx-auto">
-        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-medium text-center mb-10 md:mb-20 text-gray-800 dark:text-gray-200 tracking-tight leading-tight">
-          Some <span className="font-bold text-black dark:text-white italic">Of My</span>{" "}
-          Featured Project
-        </h2>
+
+        {/* Sticky heading — stays visible while all cards are in view */}
+        <div ref={headingRef} className="sticky top-[64px] z-[55] bg-white dark:bg-[#050505] py-5 md:py-7 -mx-6 sm:-mx-12 md:-mx-16 lg:-mx-24 xl:-mx-32 px-6 sm:px-12 md:px-16 lg:px-24 xl:px-32">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-medium text-center text-gray-800 dark:text-gray-200 tracking-tight leading-tight">
+            Some <span className="font-bold text-black dark:text-white italic">Of My</span>{" "}
+            Featured Project
+          </h2>
+        </div>
 
         <div className="relative">
           {projects.map((project, i) => {
@@ -187,13 +206,10 @@ export function FeaturedProjects() {
                 key={project.id}
                 className="sticky flex justify-center w-full"
                 style={{
-                  // ALL cards get the EXACT same top value. This ensures they all
-                  // un-stick at the exact same moment at the bottom of the section,
-                  // completely fixing the "background cards leaking down" issue.
-                  top: isMobile ? `calc(env(safe-area-inset-top, 0px) + 20px)` : `calc(env(safe-area-inset-top, 0px) + 60px)`,
+                  // Cards sit below the sticky heading — cardTop is measured dynamically
+                  top: `calc(env(safe-area-inset-top, 0px) + ${cardTop}px)`,
                   marginBottom: i === projects.length - 1 ? 0 : isMobile ? "10vh" : "15vh",
                   zIndex: isFlying ? 50 : 40 - effectiveCardsAbove,
-
                 }}
               >
                 <Card
@@ -212,7 +228,7 @@ export function FeaturedProjects() {
             );
           })}
 
-          <div className="h-[100vh] md:h-[150vh] pointer-events-none" />
+          <div className="h-[40vh] pointer-events-none" />
         </div>
       </div>
     </section>
@@ -399,17 +415,98 @@ function Card({
                 {project.previewTitle}
               </h4>
 
-              {/* Standard spacing on mobile, but flex-1 push to bottom on desktop to prevent height bleeding */}
-              <div className="relative mt-1 md:mt-3 group pb-4 md:pb-4 md:flex-1 md:flex md:flex-col md:justify-end">
-                {/* Size enforced by WIDTH on mobile exactly as requested, but by HEIGHT on laptops and up */}
-                <div className="w-[100px] sx:w-[130px] sm:w-[150px] md:w-auto md:h-[210px] lg:h-[240px] xl:h-[260px] aspect-[9/19] bg-black rounded-[15px] sx:rounded-[20px] sm:rounded-[30px] md:rounded-[24px] border-[3px] sm:border-[6px] md:border-[6px] border-[#0c0c0c] mx-auto shadow-[0_15px_40px_rgba(0,0,0,0.15)] md:shadow-[0_40px_100px_rgba(0,0,0,0.3)] overflow-hidden relative shrink-0 transition-transform duration-300 hover:-translate-y-2">
-                  <img
-                    src={project.previewImage}
-                    alt={project.previewTitle}
-                    className="w-full h-full object-cover"
-                  />
-                  {/* Notch dimensions matching mobile/desktop logic */}
-                  <div className="absolute top-0 left-1/2 -translate-x-1/2 w-8 sx:w-16 md:w-[35%] h-2 sx:h-4 md:h-[10px] bg-black rounded-b-xl md:rounded-b-[8px] z-20"></div>
+              {/* MacBook Mockup */}
+              <div className="relative mt-1 md:mt-2 pb-0 md:flex-1 md:flex md:flex-col md:justify-end">
+                <div
+                  className="select-none transition-transform duration-300 hover:-translate-y-2"
+                  style={{ width: "min(380px, 98%)", margin: "0 auto" }}
+                >
+                  {/* Aspect-ratio scaler (57.875% = original height/width ratio) */}
+                  <div style={{ width: "100%", paddingTop: "57.875%", height: 0, position: "relative", margin: "auto" }}>
+                    <div style={{ position: "absolute", left: 0, top: 0, width: "100%", height: "100%" }}>
+
+                      {/* Screen lid */}
+                      <div style={{
+                        margin: "auto",
+                        background: "#111",
+                        width: "81%",
+                        height: "94%",
+                        borderTopLeftRadius: "2% 3%",
+                        borderTopRightRadius: "2% 3%",
+                        borderBottomLeftRadius: "5% 3%",
+                        borderBottomRightRadius: "5% 3%",
+                        boxSizing: "border-box",
+                        padding: "3%",
+                        position: "relative",
+                        overflow: "hidden",
+                        border: "1px solid #ddd",
+                      }}>
+                        {/* Corner highlight (::before) */}
+                        <div style={{
+                          position: "absolute", right: "0.3%", top: "0.5%",
+                          width: "36.5%", height: "35%",
+                          border: "1px solid #666", borderBottom: "none", borderLeft: "none",
+                          borderTopRightRadius: "4.5% 7%", pointerEvents: "none",
+                        }} />
+                        {/* Light reflection (::after) */}
+                        <div style={{
+                          position: "absolute", right: "-25%", top: "-25%",
+                          width: "40%", height: "150%",
+                          background: "linear-gradient(rgba(255,255,255,0.2), rgba(200,200,200,0) 40%)",
+                          transform: "rotate(-30deg)", pointerEvents: "none", zIndex: 2,
+                        }} />
+                        {/* Camera */}
+                        <div style={{
+                          background: "#333", borderRadius: "50%",
+                          width: "1%", height: "1.5%",
+                          position: "absolute", left: "49.5%", top: "2%",
+                        }}>
+                          <div style={{
+                            position: "absolute", left: "35%", top: "40%",
+                            width: "30%", height: "30%",
+                            borderRadius: "50%", background: "#777",
+                          }} />
+                        </div>
+                        {/* Screen content — image fills this exactly */}
+                        <div style={{
+                          width: "100%", height: "100%",
+                          background: "#111", overflow: "hidden",
+                        }}>
+                          {project.previewImage && (
+                            <img
+                              src={project.previewImage}
+                              alt=""
+                              className="w-full h-full object-cover object-top block"
+                            />
+                          )}
+                        </div>
+                      </div>
+
+                      {/* Bottom bar */}
+                      <div style={{
+                        background: "linear-gradient(#ccc 50%, #444)",
+                        width: "100%", height: "5%",
+                        position: "relative", top: "-1.7%",
+                        borderBottomLeftRadius: "6% 50%",
+                        borderBottomRightRadius: "6% 50%",
+                        boxShadow: "1px 0px 8px 1px #333",
+                      }}>
+                        <div style={{
+                          width: "100%", height: "50%",
+                          background: "linear-gradient(90deg, #aaa, #f3f3f3 0.5%, #aaa 2.5%, #f3f3f3 5.5%, #f3f3f3 94.5%, #aaa 97.5%, #f3f3f3 99.5%, #aaa)",
+                        }}>
+                          {/* Thumb notch */}
+                          <div style={{
+                            background: "radial-gradient(90% 150% at 50% 1%, #eee 49%, #888)",
+                            margin: "auto", width: "15%", height: "60%",
+                            borderBottomLeftRadius: "8% 100%",
+                            borderBottomRightRadius: "8% 100%",
+                          }} />
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
