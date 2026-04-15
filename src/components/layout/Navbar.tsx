@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
+import { Github } from "lucide-react";
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
 
@@ -89,6 +90,15 @@ export function Navbar() {
   
           {/* Right Column: Actions */}
           <div className="flex items-center justify-end gap-3 flex-shrink-0">
+            <a
+              href="https://github.com/ankit-orion"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-2 rounded-full text-gray-600 dark:text-gray-400 hover:bg-black/5 dark:hover:bg-white/5 hover:text-black dark:hover:text-white transition"
+              aria-label="GitHub"
+            >
+              <Github className="w-4 h-4" />
+            </a>
             <ThemeToggle />
 
             <Link
