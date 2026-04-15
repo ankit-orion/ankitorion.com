@@ -20,9 +20,27 @@ const caveat = CaveatFont({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://ankitorion.vercel.app"),
   title: "Ankit Orion | Full-Stack Web Developer",
   description:
     "Full-Stack Web Developer from Patna, Bihar. Building fast, modern web apps with React, Next.js, Node.js and more.",
+  keywords: [
+    "Ankit Orion",
+    "Software Engineer",
+    "Web Developer",
+    "Full-Stack Developer",
+    "React Developer",
+    "Next.js Developer",
+    "Node.js",
+    "Patna",
+    "Bihar",
+  ],
+  authors: [{ name: "Ankit Orion", url: "https://ankitorion.vercel.app" }],
+  creator: "Ankit Orion",
+  publisher: "Ankit Orion",
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     title: "Ankit Orion | Full-Stack Web Developer",
     description: "Building fast, modern web apps with React, Next.js, Node.js and more.",
