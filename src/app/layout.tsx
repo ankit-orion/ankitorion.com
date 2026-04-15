@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Outfit as OutfitFont, Caveat as CaveatFont } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 
 import "./globals.css";
 import { ThemeProvider } from "@/components/ui/theme-provider";
@@ -75,6 +76,7 @@ export default function RootLayout({
           <ScrollProgress />
           {children}
           <BackToTop />
+          <Analytics />
           <Toaster
             position="bottom-center"
             expand={false}
