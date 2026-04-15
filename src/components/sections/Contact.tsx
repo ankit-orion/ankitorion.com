@@ -76,7 +76,7 @@ export function Contact() {
   const times = ["10:00 AM", "11:30 AM", "02:00 PM", "04:30 PM", "06:00 PM"];
 
   return (
-    <section id="contact" className="relative w-full overflow-hidden bg-white dark:bg-black pb-24 border-b border-black/[0.12] dark:border-white/20">
+    <section id="contact" className="relative w-full overflow-hidden bg-white dark:bg-black pb-24">
       <div id="book" className="absolute top-0" />
       <div id="message" className="absolute top-0" />
       <SectionCornerMarks />

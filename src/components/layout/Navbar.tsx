@@ -2,15 +2,13 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { Menu, X, Github, Twitter } from "lucide-react";
+import { Menu, X, Github, Twitter, Home as HomeIcon } from "lucide-react";
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
 
 const navLinks = [
-  { name: "Home", href: "/", sectionId: "" },
   { name: "Services", href: "#services", sectionId: "services" },
   { name: "Projects", href: "#featured-projects", sectionId: "featured-projects" },
-  { name: "Library", href: "#library", sectionId: "library" },
   { name: "Story", href: "#my-story", sectionId: "my-story" },
 ];
 
@@ -54,31 +52,39 @@ export function Navbar() {
           initial={{ y: 0 }}
           animate={{ y: visible ? 0 : -100 }}
           transition={{ duration: 0.3, ease: "easeInOut" }}
-          className="pointer-events-auto bg-white/70 dark:bg-[#0a0a0a]/70 backdrop-blur-xl px-4 md:px-6 py-2 md:py-3 rounded-full border border-black/5 dark:border-white/10 shadow-[0_10px_40px_rgba(0,0,0,0.1)] flex items-center lg:grid lg:grid-cols-3 gap-3 md:gap-4 w-full lg:w-max lg:min-w-[800px] max-w-4xl justify-between mx-auto"
+          className="pointer-events-auto bg-white/95 dark:bg-[#0a0a0a]/95 backdrop-blur-xl p-1 md:p-1.5 rounded-full border border-black/10 dark:border-white/10 shadow-[0_2px_16px_rgba(0,0,0,0.06)] flex items-center gap-2 md:gap-3 w-full lg:w-max justify-between lg:justify-center mx-auto"
         >
-          
-          {/* Left Column: Logo Section */}
-          <div className="flex items-center justify-start">
+          {/* Logo & Mobile Menu */}
+          <div className="flex items-center justify-between lg:justify-start w-full lg:w-auto px-2 lg:px-0">
             <Link href="/" className="flex items-center gap-2 hover:scale-105 transition flex-shrink-0 group">
-              <div className="w-8 h-8 rounded-full bg-black dark:bg-white flex items-center justify-center">
-                 <span className="text-white dark:text-black font-bold text-xs">A.</span>
-              </div>
-              <span className="font-bold text-sm text-black dark:text-white hidden sm:block tracking-tight whitespace-nowrap">Ankit Orion</span>
+              <span className="font-bold text-sm text-black dark:text-white flex items-center gap-1.5 whitespace-nowrap lg:pl-3">
+                 <HomeIcon className="w-4 h-4 hidden lg:block" />
+                 Ankit Orion
+              </span>
             </Link>
+            
+            <button
+              onClick={() => setIsOpen(true)}
+              className="lg:hidden p-2 rounded-full text-gray-600 dark:text-gray-400 hover:bg-black/5 dark:hover:bg-white/5 transition"
+            >
+              <Menu className="w-5 h-5" />
+            </button>
           </div>
-          
-          {/* Center Column: Nav Links (Desktop) */}
-          <div className="hidden lg:flex items-center justify-center gap-6 px-6 border-l border-r border-black/5 dark:border-white/10 mx-2">
+
+          <div className="hidden lg:block w-[1px] h-5 bg-black/10 dark:bg-white/10" />
+
+          {/* Desktop Nav Links */}
+          <div className="hidden lg:flex items-center justify-center gap-0.5">
              {navLinks.map((link) => {
                const isActive = link.sectionId ? activeSection === link.sectionId : activeSection === "";
                return (
                <Link
                  key={link.name}
                  href={link.href}
-                 className={`text-xs font-bold uppercase tracking-widest transition whitespace-nowrap ${
+                 className={`text-xs font-semibold px-3 py-2 rounded-full transition whitespace-nowrap ${
                    isActive
-                     ? "text-black dark:text-white"
-                     : "text-gray-500 hover:text-black dark:text-gray-400 dark:hover:text-white"
+                     ? "bg-black/5 dark:bg-white/10 text-black dark:text-white"
+                     : "text-gray-500 hover:text-black dark:text-gray-400 dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/5"
                  }`}
                >
                  {link.name}
@@ -87,8 +93,10 @@ export function Navbar() {
              })}
           </div>
   
-          {/* Right Column: Actions */}
-          <div className="flex items-center justify-end gap-3 flex-shrink-0">
+          <div className="hidden lg:block w-[1px] h-5 bg-black/10 dark:bg-white/10" />
+
+          {/* Socials */}
+          <div className="hidden lg:flex items-center gap-1">
             <a
               href="https://github.com/ankit-orion"
               target="_blank"
@@ -96,7 +104,7 @@ export function Navbar() {
               className="p-2 rounded-full text-gray-600 dark:text-gray-400 hover:bg-black/5 dark:hover:bg-white/5 hover:text-black dark:hover:text-white transition"
               aria-label="GitHub"
             >
-              <Github className="w-4 h-4" />
+              <Github className="w-[18px] h-[18px]" />
             </a>
             <a
               href="https://x.com/OrionAnkit"
@@ -105,25 +113,25 @@ export function Navbar() {
               className="p-2 rounded-full text-gray-600 dark:text-gray-400 hover:bg-black/5 dark:hover:bg-white/5 hover:text-black dark:hover:text-white transition"
               aria-label="X (Twitter)"
             >
-              <Twitter className="w-4 h-4" />
+              <Twitter className="w-[18px] h-[18px]" />
             </a>
-            <ThemeToggle />
-
-            <Link
-              href="#contact"
-              className="hidden sx:block bg-[#1a1a1a] dark:bg-white text-white dark:text-black px-4 py-2 rounded-full text-xs font-semibold hover:opacity-80 transition whitespace-nowrap"
-            >
-              Contact
-            </Link>
-
-            {/* Mobile Menu Trigger */}
-            <button
-              onClick={() => setIsOpen(true)}
-              className="lg:hidden p-2 rounded-full text-gray-600 dark:text-gray-400 hover:bg-black/5 dark:hover:bg-white/5 transition"
-            >
-              <Menu className="w-5 h-5" />
-            </button>
           </div>
+
+          <div className="hidden lg:block w-[1px] h-5 bg-black/10 dark:bg-white/10" />
+
+          <div className="hidden lg:flex items-center justify-center px-1">
+            <ThemeToggle />
+          </div>
+
+          <div className="hidden lg:block w-[1px] h-5 bg-black/10 dark:bg-white/10" />
+
+          {/* Contact Button */}
+          <Link
+            href="#contact"
+            className="hidden lg:flex bg-[#1a1a1a] dark:bg-white text-white dark:text-black px-5 py-2.5 rounded-full text-sm font-semibold hover:opacity-80 transition whitespace-nowrap border border-transparent dark:border-white/20"
+          >
+            Contact
+          </Link>
         </motion.nav>
       </div>
 

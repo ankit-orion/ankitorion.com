@@ -32,7 +32,12 @@ export function Hero() {
 
   return (
     <section className="relative w-full overflow-hidden bg-white dark:bg-black">
-      <SectionCornerMarks />
+      <div className="absolute top-20 md:top-24 bottom-0 inset-x-0 pointer-events-none flex justify-center z-0">
+        <div className="w-full max-w-5xl border-t border-black/[0.12] dark:border-white/20" />
+      </div>
+      <div className="absolute top-20 md:top-24 bottom-0 inset-x-0">
+        <SectionCornerMarks />
+      </div>
       <div className="min-h-[100dvh] pt-24 pb-16 md:pt-32 md:pb-20 px-4 md:px-8 max-w-5xl mx-auto flex flex-col md:flex-row items-center gap-8 lg:gap-16">
         <div className="flex-1 space-y-5 md:space-y-6 text-left order-2 md:order-1 relative z-10">
           <div className="inline-flex items-center gap-2 bg-[#dcffca] text-[#2c5300] px-4 py-2 rounded-full text-[10px] md:text-xs font-medium border border-black/5">

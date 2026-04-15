@@ -17,8 +17,9 @@ export function Footer() {
   ];
 
   return (
-    <footer className="w-full border-t border-black/8 dark:border-white/10 bg-white dark:bg-[#050505] py-8">
-      <div className="max-w-4xl mx-auto px-6 md:px-8 flex flex-col md:flex-row justify-between items-center gap-4">
+    <footer className="w-full bg-white dark:bg-[#050505] flex flex-col items-center relative z-50">
+      <div className="w-full max-w-5xl border-t border-black/10 dark:border-white/10" />
+      <div className="w-full max-w-5xl mx-auto px-4 md:px-8 py-8 flex flex-col md:flex-row justify-between items-center gap-4">
         <span className="text-sm font-semibold text-gray-600 dark:text-gray-400">
           © {currentYear} Ankit Mishra
         </span>
