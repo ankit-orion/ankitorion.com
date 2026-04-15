@@ -63,12 +63,34 @@ export function Navbar() {
               </span>
             </Link>
             
-            <button
-              onClick={() => setIsOpen(true)}
-              className="lg:hidden p-2 rounded-full text-gray-600 dark:text-gray-400 hover:bg-black/5 dark:hover:bg-white/5 transition"
-            >
-              <Menu className="w-5 h-5" />
-            </button>
+            <div className="flex items-center gap-0.5 sm:gap-1 lg:hidden">
+              <a
+                href="https://github.com/ankit-orion"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 rounded-full text-gray-600 dark:text-gray-400 hover:bg-black/5 dark:hover:bg-white/5 dark:hover:text-white transition"
+              >
+                <Github className="w-[18px] h-[18px]" />
+              </a>
+              <a
+                href="https://x.com/OrionAnkit"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 rounded-full text-gray-600 dark:text-gray-400 hover:bg-black/5 dark:hover:bg-white/5 dark:hover:text-white transition"
+              >
+                <Twitter className="w-[18px] h-[18px]" />
+              </a>
+              <div className="flex items-center justify-center -ml-1">
+                <ThemeToggle />
+              </div>
+              <div className="w-px h-5 bg-black/10 dark:bg-white/10 mx-1 sm:mx-2" />
+              <button
+                onClick={() => setIsOpen(true)}
+                className="p-2 rounded-full text-gray-600 dark:text-gray-400 hover:bg-black/5 dark:hover:bg-white/5 transition"
+              >
+                <Menu className="w-5 h-5" />
+              </button>
+            </div>
           </div>
 
           <div className="hidden lg:block w-[1px] h-5 bg-black/10 dark:bg-white/10" />
