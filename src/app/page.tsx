@@ -3,6 +3,7 @@ import { Hero } from "@/components/sections/Hero";
 import { LogoTicker } from "@/components/sections/LogoTicker";
 import { FeaturedProjects } from "@/components/sections/FeaturedProjects";
 import { GitHubActivity } from "@/components/sections/GitHubActivity";
+import { TerminalSection } from "@/components/sections/TerminalSection";
 import { MyStory } from "@/components/sections/MyStory";
 import { BookSection } from "@/components/sections/BookSection";
 import { Benefits } from "@/components/sections/Benefits";
@@ -106,6 +107,7 @@ export default function Home() {
       <LogoTicker />
       <FeaturedProjects />
       <GitHubActivity />
+      <TerminalSection />
       <MyStory />
       <Benefits />
       <BookSection />
