@@ -130,7 +130,7 @@ export function GitHubActivity() {
                       {pushes.map((push, idx) => (
                         <div key={idx} className="flex flex-col sm:flex-row sm:items-center justify-between text-[13px] gap-2 sm:gap-4">
                           <div className="flex items-center gap-2 truncate max-w-full">
-                            <a href={`https://github.com/${push.repoShort}`} target="_blank" rel="noreferrer" className="text-[#0969da] dark:text-[#58a6ff] hover:underline font-semibold flex-shrink-0">
+                            <a href={`https://github.com/${push.repo}`} target="_blank" rel="noreferrer" className="text-[#0969da] dark:text-[#58a6ff] hover:underline font-semibold flex-shrink-0">
                               {push.repoShort}
                             </a>
                             <span className="text-gray-500 dark:text-[#8b949e] whitespace-nowrap hidden sm:inline">{push.commitCount} commits</span>
@@ -175,16 +175,18 @@ export function GitHubActivity() {
                         <div key={idx} className="flex flex-col sm:flex-row sm:items-center justify-between text-[13px] gap-2">
                           <div className="flex items-center gap-2">
                             <svg className="w-4 h-4 text-gray-400 dark:text-[#8b949e] shrink-0" viewBox="0 0 16 16" fill="currentColor"><path d="M2 2.5A2.5 2.5 0 014.5 0h8.75a.75.75 0 01.75.75v12.5a.75.75 0 01-.75.75h-2.5a.75.75 0 110-1.5h1.75v-2h-8a1 1 0 00-.714 1.7.75.75 0 01-1.072 1.05A2.495 2.495 0 012 11.5v-9zm10.5-1h-8a1 1 0 00-1 1v6.708A2.486 2.486 0 014.5 9h8V1.5z"></path></svg>
-                            <a href={`https://github.com/${create.repoShort}`} target="_blank" rel="noreferrer" className="text-[#0969da] dark:text-[#58a6ff] hover:underline font-semibold truncate">
+                            <a href={`https://github.com/${create.repo}`} target="_blank" rel="noreferrer" className="text-[#0969da] dark:text-[#58a6ff] hover:underline font-semibold truncate">
                               {create.repoShort}
                             </a>
                           </div>
 
                           <div className="flex items-center justify-between sm:justify-end gap-4 sm:gap-6 text-gray-500 dark:text-[#8b949e]">
-                            <span className="flex items-center gap-1.5 shrink-0">
-                              <div className="w-2.5 h-2.5 rounded-full bg-[#3178c6]" />
-                              TypeScript
-                            </span>
+                            {create.language && (
+                              <span className="flex items-center gap-1.5 shrink-0">
+                                <div className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: create.languageColor ?? '#8b949e' }} />
+                                {create.language}
+                              </span>
+                            )}
                             <span className="text-right tabular-nums whitespace-nowrap text-[12px] sm:text-[13px]">
                               {new Date(create.timestamp).toLocaleDateString("en-US", { month: "short", day: "numeric" })}
                             </span>
@@ -213,7 +215,7 @@ export function GitHubActivity() {
                       <h4 className="text-[14px] text-gray-900 dark:text-white flex flex-col sm:flex-row sm:items-center justify-between gap-1 sm:gap-0 font-semibold sm:font-normal">
                         <span className="leading-relaxed">
                           Created a pull request in{" "}
-                          <a href={`https://github.com/${pr.repoShort}`} target="_blank" rel="noreferrer" className="font-semibold text-gray-900 dark:text-white hover:text-[#0969da] dark:hover:text-[#58a6ff] hover:underline whitespace-nowrap">
+                          <a href={`https://github.com/${pr.repo}`} target="_blank" rel="noreferrer" className="font-semibold text-gray-900 dark:text-white hover:text-[#0969da] dark:hover:text-[#58a6ff] hover:underline whitespace-nowrap">
                             {pr.repoShort}
                           </a>
                         </span>
@@ -230,20 +232,13 @@ export function GitHubActivity() {
                            {pr.description.replace(/^((?:merged|opened|closed) PR:\s+)/i, "") || "Feature updates"}
                         </span>
                       </div>
-                      <p className="text-[13px] text-gray-600 dark:text-[#8b949e] mb-3 leading-relaxed">System optimizations and core structural adjustments.</p>
-                      
-                      <div className="flex flex-wrap items-center gap-2 text-[12px] text-gray-600 dark:text-[#8b949e]">
-                        <span className="text-[#1a7f37] dark:text-[#3fb950] font-medium">+42</span>{" "}
-                        <span className="text-[#d1242f] dark:text-[#f85149] font-medium">-10</span>
-                        <div className="flex gap-[2px] ml-1 mr-2 opacity-80 shrink-0">
-                          <div className="w-2 h-2 bg-[#1a7f37] dark:bg-[#2da44e]" />
-                          <div className="w-2 h-2 bg-[#1a7f37] dark:bg-[#2da44e]" />
-                          <div className="w-2 h-2 bg-[#1a7f37] dark:bg-[#2da44e]" />
-                          <div className="w-2 h-2 bg-[#d1242f] dark:bg-[#df6862]" />
-                          <div className="w-2 h-2 bg-[#d1242f] dark:bg-[#df6862]" />
+                      {(pr.prAdditions !== undefined || pr.prDeletions !== undefined) && (
+                        <div className="flex flex-wrap items-center gap-2 text-[12px] text-gray-600 dark:text-[#8b949e] mt-2">
+                          {pr.prAdditions !== undefined && <span className="text-[#1a7f37] dark:text-[#3fb950] font-medium">+{pr.prAdditions}</span>}
+                          {pr.prDeletions !== undefined && <span className="text-[#d1242f] dark:text-[#f85149] font-medium">-{pr.prDeletions}</span>}
+                          {!!pr.prComments && <span>{pr.prComments} comment{pr.prComments !== 1 ? 's' : ''}</span>}
                         </div>
-                        <span>1 comment</span>
-                      </div>
+                      )}
                     </div>
                   </motion.div>
                 ))}

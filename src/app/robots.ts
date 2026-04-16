@@ -1,7 +1,7 @@
 import { MetadataRoute } from "next";
 
 export default function robots(): MetadataRoute.Robots {
-  const baseUrl = "https://ankitorion.vercel.app";
+  const baseUrl = "https://ankitorion.com";
 
   return {
     rules: {
