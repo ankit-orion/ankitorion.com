@@ -1,3 +1,5 @@
+import { TerminalModeProvider } from "@/lib/terminal-mode";
+import { TerminalModeSwitch } from "@/components/sections/TerminalModeSwitch";
 import { Navbar } from "@/components/layout/Navbar";
 import { Hero } from "@/components/sections/Hero";
 import { LogoTicker } from "@/components/sections/LogoTicker";
@@ -92,26 +94,28 @@ const jsonLd = {
 
 export default function Home() {
   return (
-    <>
+    <TerminalModeProvider>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-    <main className="min-h-screen bg-white dark:bg-[#050505] font-sans text-gray-900 dark:text-gray-100 selection:bg-gray-200 dark:selection:bg-gray-800 relative select-none md:select-auto">
-      {/* SEO: primary h1 with name — visually hidden, read by Google and screen readers */}
-      <h1 className="sr-only">Ankit Mishra — Full-Stack Web Developer Portfolio</h1>
-      <GlobalGrid />
-      <Navbar />
-      <Hero />
-      <LogoTicker />
-      <FeaturedProjects />
-      <GitHubActivity />
-      <MyStory />
-      <Benefits />
-      <BookSection />
-      <Contact />
-      <Footer />
-    </main>
-    </>
+      <main className="min-h-screen bg-white dark:bg-[#050505] font-sans text-gray-900 dark:text-gray-100 selection:bg-gray-200 dark:selection:bg-gray-800 relative select-none md:select-auto">
+        {/* SEO: primary h1 with name — visually hidden, read by Google and screen readers */}
+        <h1 className="sr-only">Ankit Mishra — Full-Stack Web Developer Portfolio</h1>
+        <GlobalGrid />
+        <Navbar />
+        <Hero />
+        <LogoTicker />
+        <FeaturedProjects />
+        <GitHubActivity />
+        <MyStory />
+        <Benefits />
+        <BookSection />
+        <Contact />
+        <Footer />
+      </main>
+      {/* Terminal overlay — mounts on top when toggled */}
+      <TerminalModeSwitch />
+    </TerminalModeProvider>
   );
 }

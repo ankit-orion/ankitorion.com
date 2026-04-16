@@ -2,9 +2,10 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { Menu, X, Github, Twitter, Home as HomeIcon } from "lucide-react";
+import { Menu, X, Github, Twitter, Home as HomeIcon, TerminalSquare } from "lucide-react";
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
+import { useTerminalMode } from "@/lib/terminal-mode";
 
 const navLinks = [
   { name: "Services", href: "#services", sectionId: "services" },
@@ -17,6 +18,7 @@ export function Navbar() {
   const [visible, setVisible] = useState(true);
   const [activeSection, setActiveSection] = useState("");
   const { scrollY } = useScroll();
+  const { isTerminalMode, toggle: toggleTerminal } = useTerminalMode();
 
   useEffect(() => {
     const sectionIds = navLinks.map((l) => l.sectionId).filter(Boolean);
@@ -83,6 +85,14 @@ export function Navbar() {
               <div className="flex items-center justify-center -ml-1">
                 <ThemeToggle />
               </div>
+              {/* Terminal mode toggle — mobile */}
+              <button
+                onClick={toggleTerminal}
+                title={isTerminalMode ? "Exit terminal mode" : "Switch to terminal mode"}
+                className="p-2 rounded-full text-gray-600 dark:text-gray-400 hover:bg-black/5 dark:hover:bg-white/5 transition"
+              >
+                <TerminalSquare className="w-[18px] h-[18px]" />
+              </button>
               <div className="w-px h-5 bg-black/10 dark:bg-white/10 mx-1 sm:mx-2" />
               <button
                 onClick={() => setIsOpen(true)}
@@ -144,6 +154,20 @@ export function Navbar() {
           <div className="hidden lg:flex items-center justify-center px-1">
             <ThemeToggle />
           </div>
+
+          <div className="hidden lg:block w-[1px] h-5 bg-black/10 dark:bg-white/10" />
+
+          {/* Terminal mode toggle — desktop */}
+          <button
+            onClick={toggleTerminal}
+            title={isTerminalMode ? "Exit terminal mode" : "Switch to terminal mode"}
+            className="hidden lg:flex items-center gap-1.5 px-3 py-2 rounded-full text-xs font-semibold transition
+              text-gray-500 hover:text-black dark:text-gray-400 dark:hover:text-white
+              hover:bg-black/5 dark:hover:bg-white/5"
+          >
+            <TerminalSquare className="w-[15px] h-[15px]" />
+            <span>{isTerminalMode ? "Exit" : ">_"}</span>
+          </button>
 
           <div className="hidden lg:block w-[1px] h-5 bg-black/10 dark:bg-white/10" />
 
