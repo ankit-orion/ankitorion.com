@@ -1,7 +1,6 @@
 import { Navbar } from "@/components/layout/Navbar";
 import { Hero } from "@/components/sections/Hero";
 import { LogoTicker } from "@/components/sections/LogoTicker";
-import { Services } from "@/components/sections/Services";
 import { FeaturedProjects } from "@/components/sections/FeaturedProjects";
 import { GitHubActivity } from "@/components/sections/GitHubActivity";
 import { MyStory } from "@/components/sections/MyStory";
@@ -105,7 +104,6 @@ export default function Home() {
       <Navbar />
       <Hero />
       <LogoTicker />
-      <Services />
       <FeaturedProjects />
       <GitHubActivity />
       <MyStory />
