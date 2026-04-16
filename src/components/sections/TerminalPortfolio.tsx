@@ -1,18 +1,17 @@
 "use client";
 
 import { useEffect, useRef, useState, useCallback } from "react";
-import { Minus, Square, X } from "lucide-react";
 import { useTerminalMode } from "@/lib/terminal-mode";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 type Line =
   | { kind: "blank" }
   | { kind: "boot";    text: string }
-  | { kind: "prompt";  cmd: string }          // shows the prompt + command typed
+  | { kind: "prompt";  cmd: string }
   | { kind: "output";  text: string }
-  | { kind: "info";    text: string }          // cyan — headers / labels
-  | { kind: "success"; text: string }          // green
-  | { kind: "error";   text: string }          // red
+  | { kind: "info";    text: string }
+  | { kind: "success"; text: string }
+  | { kind: "error";   text: string }
   | { kind: "divider" };
 
 const PROMPT_PATH = "C:\\Users\\Ankit\\Portfolio";
@@ -44,8 +43,8 @@ const WHOAMI: Line[] = [
 ];
 
 const ABOUT: Line[] = [
-  { kind: "divider" },
   { kind: "blank" },
+  { kind: "divider" },
   { kind: "info",    text: "  Name        :  Ankit Mishra" },
   { kind: "output",  text: "  Alias        :  Ankit Orion" },
   { kind: "output",  text: "  Role         :  Full-Stack Web Developer" },
@@ -53,12 +52,10 @@ const ABOUT: Line[] = [
   { kind: "output",  text: "  Location     :  Patna, Bihar, India" },
   { kind: "success", text: "  Status       :  Available for freelance" },
   { kind: "output",  text: "  Interests    :  Space Science · Philosophy · Cricket" },
-  { kind: "blank" },
   { kind: "divider" },
   { kind: "blank" },
   { kind: "output",  text: "  I spend my time building software, solving problems, and" },
-  { kind: "output",  text: "  understanding how systems work — both in code and beyond" },
-  { kind: "output",  text: "  it. Deeply interested in space and philosophy." },
+  { kind: "output",  text: "  understanding how systems work — both in code and beyond." },
   { kind: "blank" },
 ];
 
@@ -94,7 +91,7 @@ const PROJECTS: Line[] = [
   { kind: "output",  text: "              Next.js · Kubernetes · Terraform" },
   { kind: "output",  text: "              Zero-latency hosting across 50+ regions" },
   { kind: "blank" },
-  { kind: "output",  text: "              3 Dir(s)    Run 'github' to view all on GitHub" },
+  { kind: "output",  text: "  3 Dir(s)   —   Run 'github' to view all on GitHub" },
   { kind: "blank" },
 ];
 
@@ -120,11 +117,10 @@ const DIR: Line[] = [
   { kind: "output",  text: "  <DIR>  contact" },
   { kind: "output",  text: "  <DIR>  github" },
   { kind: "blank" },
-  { kind: "output",  text: "              5 Dir(s)" },
+  { kind: "output",  text: "  5 Dir(s)" },
   { kind: "blank" },
 ];
 
-// ─── Boot sequence ────────────────────────────────────────────────────────────
 const BOOT: Line[] = [
   { kind: "boot",    text: "Ankit OS [Version 2025.04.16]" },
   { kind: "boot",    text: "(c) Ankit Corp. All rights reserved." },
@@ -133,9 +129,11 @@ const BOOT: Line[] = [
   { kind: "blank" },
 ];
 
-const ALL_COMMANDS = ["help","whoami","about","skills","projects","contact","github","dir","cls","exit","quit"];
+const ALL_COMMANDS = [
+  "help","whoami","about","skills","projects",
+  "contact","github","dir","cls","exit","quit",
+];
 
-// ─── Command processor ────────────────────────────────────────────────────────
 function run(raw: string, toggle: () => void): Line[] | "clear" {
   const cmd = raw.trim().toLowerCase();
   const echo: Line = { kind: "prompt", cmd: raw };
@@ -151,8 +149,7 @@ function run(raw: string, toggle: () => void): Line[] | "clear" {
     case "github":
       window.open("https://github.com/ankit-orion", "_blank");
       return [echo, { kind: "success", text: "Opening GitHub profile..." }, { kind: "blank" }];
-    case "cls":
-      return "clear";
+    case "cls":      return "clear";
     case "exit":
     case "quit":
       toggle();
@@ -162,21 +159,20 @@ function run(raw: string, toggle: () => void): Line[] | "clear" {
     default:
       return [
         echo,
-        { kind: "error",  text: `'${raw}' is not recognized as an internal or external command,` },
-        { kind: "error",  text: "operable program or batch file." },
+        { kind: "error", text: `'${raw}' is not recognized as an internal or external command,` },
+        { kind: "error", text: "operable program or batch file." },
         { kind: "blank" },
       ];
   }
 }
 
-// ─── Component ────────────────────────────────────────────────────────────────
 export function TerminalPortfolio() {
-  const { toggle } = useTerminalMode();
-  const [lines, setLines]       = useState<Line[]>(BOOT);
-  const [input, setInput]       = useState("");
-  const [history, setHistory]   = useState<string[]>([]);
-  const [histIdx, setHistIdx]   = useState(-1);
-  const [suggestion, setSuggestion] = useState("");
+  const { toggle }                      = useTerminalMode();
+  const [lines, setLines]               = useState<Line[]>(BOOT);
+  const [input, setInput]               = useState("");
+  const [history, setHistory]           = useState<string[]>([]);
+  const [histIdx, setHistIdx]           = useState(-1);
+  const [suggestion, setSuggestion]     = useState("");
   const inputRef  = useRef<HTMLInputElement>(null);
   const bottomRef = useRef<HTMLDivElement>(null);
 
@@ -185,7 +181,6 @@ export function TerminalPortfolio() {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [lines]);
 
-  // Tab-complete suggestion
   useEffect(() => {
     if (!input) { setSuggestion(""); return; }
     const match = ALL_COMMANDS.find(
@@ -228,11 +223,11 @@ export function TerminalPortfolio() {
   const renderLine = (line: Line, i: number) => {
     switch (line.kind) {
       case "blank":
-        return <div key={i} className="h-[0.6em]" />;
+        return <div key={i} className="h-[0.5em]" />;
       case "boot":
         return <div key={i} className="text-[#C0C0C0]">{line.text}</div>;
       case "divider":
-        return <div key={i} className="text-[#555]">{"─".repeat(56)}</div>;
+        return <div key={i} className="text-[#404040]">{"─".repeat(60)}</div>;
       case "prompt":
         return (
           <div key={i} className="flex flex-wrap gap-x-1">
@@ -252,90 +247,80 @@ export function TerminalPortfolio() {
   };
 
   return (
-    /* Backdrop */
-    <div className="fixed inset-0 z-[90] bg-black/60 flex items-center justify-center p-0 sm:p-6 md:p-10"
+    <div
+      className="fixed inset-0 z-[90] flex flex-col overflow-hidden"
+      style={{
+        background: "#0C0C0C",
+        fontFamily: "'Cascadia Code','Consolas','Courier New',monospace",
+      }}
       onClick={() => inputRef.current?.focus()}
     >
-      {/* Terminal window */}
-      <div
-        className="w-full h-full sm:h-auto sm:max-h-[88vh] sm:rounded-lg overflow-hidden flex flex-col shadow-2xl border border-[#3c3c3c]"
-        style={{ maxWidth: "860px", background: "#0C0C0C" }}
-        onClick={(e) => e.stopPropagation()}
-      >
-
-        {/* ── Title bar ── */}
-        <div className="flex items-center justify-between px-3 py-2 bg-[#1e1e1e] border-b border-[#3c3c3c] select-none shrink-0">
-          {/* Window controls */}
-          <div className="flex items-center gap-1.5">
-            <button
-              onClick={toggle}
-              className="w-3 h-3 rounded-full bg-[#ff5f57] hover:bg-[#ff3b30] transition flex items-center justify-center group"
-              title="Exit terminal"
-            >
-              <X className="w-1.5 h-1.5 text-[#800000] opacity-0 group-hover:opacity-100" />
-            </button>
-            <div className="w-3 h-3 rounded-full bg-[#febc2e]" />
-            <div className="w-3 h-3 rounded-full bg-[#28c840]" />
-          </div>
-
-          {/* Title */}
-          <span className="text-[11px] text-[#8c8c8c] font-medium tracking-wide absolute left-1/2 -translate-x-1/2">
-            Command Prompt — ankit@portfolio
-          </span>
-
-          {/* Spacer */}
-          <div className="w-12" />
-        </div>
-
-        {/* ── Terminal body ── */}
-        <div
-          className="flex-1 overflow-y-auto px-4 py-3 font-mono text-[13px] sm:text-sm leading-[1.6] min-h-0"
-          style={{ fontFamily: "'Cascadia Code', 'Consolas', 'Courier New', monospace" }}
+      {/* ── Top bar ────────────────────────────────────────────────────────── */}
+      <div className="shrink-0 flex items-center justify-between px-4 py-2 bg-[#1e1e1e] border-b border-[#2d2d2d] select-none">
+        <span className="text-[#C0C0C0] text-xs">
+          Command Prompt
+        </span>
+        <span className="text-[#8c8c8c] text-[11px] hidden sm:block">
+          ankit@portfolio — {PROMPT_PATH}
+        </span>
+        <button
+          onClick={toggle}
+          className="text-[11px] text-[#8c8c8c] hover:text-white transition px-2 py-0.5 hover:bg-white/10 rounded"
         >
-          {lines.map((line, i) => renderLine(line, i))}
+          ✕ exit
+        </button>
+      </div>
 
-          {/* Active input line */}
-          <div className="flex items-center flex-wrap gap-x-1 mt-[2px]">
-            <span className="text-[#C0C0C0] shrink-0 select-none">{PROMPT}</span>
-            <div className="relative flex items-center flex-1 min-w-0">
-              <span className="text-[#FFFFFF] whitespace-pre">{input}</span>
-              {/* Ghost tab-completion */}
-              {suggestion && (
-                <span className="text-[#555] whitespace-pre pointer-events-none">{suggestion}</span>
-              )}
-              {/* Blinking block cursor */}
-              <span className="inline-block w-[8px] h-[15px] bg-[#AEAFAD] ml-[1px] animate-pulse align-middle" />
-              <input
-                ref={inputRef}
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
-                onKeyDown={handleKeyDown}
-                className="absolute inset-0 opacity-0 w-full cursor-default"
-                autoComplete="off"
-                autoCorrect="off"
-                autoCapitalize="off"
-                spellCheck={false}
-                aria-label="terminal input"
-              />
-            </div>
+      {/* ── Scrollable output ──────────────────────────────────────────────── */}
+      <div
+        className="flex-1 overflow-y-auto px-5 sm:px-10 md:px-16 py-5 text-[13px] sm:text-sm leading-[1.75] min-h-0"
+        onClick={() => inputRef.current?.focus()}
+      >
+        {lines.map((line, i) => renderLine(line, i))}
+
+        {/* Live input row */}
+        <div className="flex items-center flex-wrap gap-x-1 mt-[2px]">
+          <span className="text-[#C0C0C0] shrink-0 select-none">{PROMPT}</span>
+          <div className="relative flex items-center flex-1 min-w-[120px]">
+            {/* visible text */}
+            <span className="text-white whitespace-pre">{input}</span>
+            {/* ghost completion */}
+            {suggestion && (
+              <span className="text-[#454545] whitespace-pre pointer-events-none">{suggestion}</span>
+            )}
+            {/* block cursor */}
+            <span className="inline-block w-[8px] h-[14px] bg-[#AEAFAD] ml-px animate-pulse align-middle" />
+            {/* invisible real input */}
+            <input
+              ref={inputRef}
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              onKeyDown={handleKeyDown}
+              className="absolute inset-0 opacity-0 w-full cursor-default"
+              autoComplete="off"
+              autoCorrect="off"
+              autoCapitalize="off"
+              spellCheck={false}
+              aria-label="terminal input"
+            />
           </div>
-
-          <div ref={bottomRef} />
         </div>
 
-        {/* ── Status bar ── */}
-        <div className="shrink-0 px-4 py-1.5 bg-[#007ACC] flex items-center justify-between text-[11px] text-white/90 select-none">
-          <span className="flex items-center gap-2">
-            <span className="opacity-80">⬡</span>
-            <span>ankit@portfolio</span>
-          </span>
-          <span className="hidden sm:flex items-center gap-4 opacity-80">
-            <span>↑↓ history</span>
-            <span>Tab complete</span>
-            <span>Enter run</span>
-          </span>
-          <span className="opacity-80">CMD</span>
-        </div>
+        <div ref={bottomRef} />
+      </div>
+
+      {/* ── Status bar ─────────────────────────────────────────────────────── */}
+      <div className="shrink-0 flex items-center justify-between px-4 py-1 bg-[#007ACC] text-[11px] text-white/90 select-none">
+        <span className="flex items-center gap-2">
+          <span>⬡</span>
+          <span>ankit@portfolio</span>
+        </span>
+        <span className="hidden sm:flex items-center gap-4 opacity-80">
+          <span>↑↓ history</span>
+          <span>Tab complete</span>
+          <span>Enter to run</span>
+        </span>
+        <span className="opacity-80">CMD</span>
       </div>
     </div>
   );
