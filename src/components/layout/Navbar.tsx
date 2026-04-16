@@ -20,6 +20,9 @@ export function Navbar() {
   const { scrollY } = useScroll();
   const { isTerminalMode, toggle: toggleTerminal } = useTerminalMode();
 
+  // Hide navbar completely in terminal mode — terminal has its own top bar
+  if (isTerminalMode) return null;
+
   useEffect(() => {
     const sectionIds = navLinks.map((l) => l.sectionId).filter(Boolean);
     const observers: IntersectionObserver[] = [];
