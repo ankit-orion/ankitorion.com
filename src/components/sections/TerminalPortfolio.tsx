@@ -284,9 +284,14 @@ export function TerminalPortfolio() {
           <div className="relative flex items-center flex-1 min-w-[120px]">
             {/* visible text */}
             <span className="text-white whitespace-pre">{input}</span>
-            {/* ghost completion */}
+            {/* ghost completion — tappable on mobile */}
             {suggestion && (
-              <span className="text-[#454545] whitespace-pre pointer-events-none">{suggestion}</span>
+              <span
+                className="text-[#454545] whitespace-pre"
+                onClick={(e) => { e.stopPropagation(); setInput(input + suggestion); inputRef.current?.focus(); }}
+              >
+                {suggestion}
+              </span>
             )}
             {/* block cursor */}
             <span className="inline-block w-[8px] h-[14px] bg-[#AEAFAD] ml-px animate-pulse align-middle" />
@@ -308,6 +313,20 @@ export function TerminalPortfolio() {
 
         <div ref={bottomRef} />
       </div>
+
+      {/* ── Mobile suggestion chip — shown only when suggestion exists ──────── */}
+      {suggestion && (
+        <div className="sm:hidden shrink-0 flex items-center gap-2 px-4 py-2 bg-[#1e1e1e] border-t border-[#2d2d2d]">
+          <span className="text-[#8c8c8c] text-[11px]">complete:</span>
+          <button
+            onPointerDown={(e) => { e.preventDefault(); setInput(input + suggestion); inputRef.current?.focus(); }}
+            className="flex-1 text-left text-[12px] text-[#4EC9B0] font-mono bg-[#2d2d2d] px-3 py-1.5 rounded active:bg-[#3d3d3d] transition"
+          >
+            {input + suggestion}
+          </button>
+          <span className="text-[#555] text-[10px]">tap →</span>
+        </div>
+      )}
 
       {/* ── Status bar ─────────────────────────────────────────────────────── */}
       <div className="shrink-0 flex items-center justify-between px-4 py-1 bg-[#007ACC] text-[11px] text-white/90 select-none">
