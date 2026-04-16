@@ -7,11 +7,7 @@ import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { useTerminalMode } from "@/lib/terminal-mode";
 
-const navLinks = [
-  { name: "Services", href: "#services", sectionId: "services" },
-  { name: "Projects", href: "#featured-projects", sectionId: "featured-projects" },
-  { name: "Story", href: "#my-story", sectionId: "my-story" },
-];
+const navLinks: { name: string; href: string; sectionId: string }[] = [];
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
