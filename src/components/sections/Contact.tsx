@@ -65,13 +65,18 @@ export function Contact() {
     return () => window.removeEventListener("hashchange", handleHash);
   }, []);
 
-  const dates = [
-    { day: "Mon", date: 24, month: "Mar" },
-    { day: "Tue", date: 25, month: "Mar" },
-    { day: "Wed", date: 26, month: "Mar" },
-    { day: "Thu", date: 27, month: "Mar" },
-    { day: "Fri", date: 28, month: "Mar" },
-  ];
+  const dates = (() => {
+    const dayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+    const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    const result = [];
+    const today = new Date();
+    for (let i = 0; i < 5; i++) {
+      const d = new Date(today);
+      d.setDate(today.getDate() + i);
+      result.push({ day: dayNames[d.getDay()], date: d.getDate(), month: monthNames[d.getMonth()] });
+    }
+    return result;
+  })();
 
   const times = ["10:00 AM", "11:30 AM", "02:00 PM", "04:30 PM", "06:00 PM"];
 
