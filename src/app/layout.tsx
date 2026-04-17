@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Outfit as OutfitFont, Caveat as CaveatFont } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
+import Script from "next/script";
 
 import "./globals.css";
 import { ThemeProvider } from "@/components/ui/theme-provider";
@@ -136,6 +137,10 @@ export default function RootLayout({
             }}
           />
         </ThemeProvider>
+        <Script
+          src={`//code.tidio.co/${process.env.NEXT_PUBLIC_TIDIO_KEY}.js`}
+          strategy="lazyOnload"
+        />
       </body>
     </html>
   );
