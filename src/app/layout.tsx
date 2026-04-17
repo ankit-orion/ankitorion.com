@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Outfit as OutfitFont, Caveat as CaveatFont } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import Script from "next/script";
 
 import "./globals.css";
@@ -119,6 +120,7 @@ export default function RootLayout({
           <ScrollProgress />
           {children}
           <Analytics />
+          <SpeedInsights />
           <Toaster
             position="bottom-center"
             expand={false}
