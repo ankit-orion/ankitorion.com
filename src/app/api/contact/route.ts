@@ -10,6 +10,14 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "Missing fields" }, { status: 400 });
   }
 
+  if (
+    typeof name !== "string" || name.length > 100 ||
+    typeof email !== "string" || email.length > 254 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) ||
+    typeof message !== "string" || message.length > 5000
+  ) {
+    return NextResponse.json({ error: "Invalid input" }, { status: 400 });
+  }
+
   const { error } = await resend.emails.send({
     from: "Portfolio Contact <onboarding@resend.dev>",
     to: "adityakumar6604@gmail.com",
