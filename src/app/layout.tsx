@@ -7,7 +7,6 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/ui/theme-provider";
 import { Toaster } from "sonner";
 import { ScrollProgress } from "@/components/ui/ScrollProgress";
-import { BackToTop } from "@/components/ui/BackToTop";
 import { PageLoader } from "@/components/ui/PageLoader";
 
 const outfit = OutfitFont({
@@ -119,7 +118,6 @@ export default function RootLayout({
           <PageLoader />
           <ScrollProgress />
           {children}
-          <BackToTop />
           <Analytics />
           <Toaster
             position="bottom-center"
@@ -138,7 +136,7 @@ export default function RootLayout({
           />
         </ThemeProvider>
         <Script
-          src={`//code.tidio.co/${process.env.NEXT_PUBLIC_TIDIO_KEY}.js`}
+          src={`https://code.tidio.co/${process.env.NEXT_PUBLIC_TIDIO_KEY}.js`}
           strategy="lazyOnload"
         />
       </body>
