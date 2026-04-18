@@ -17,9 +17,9 @@ export function PageLoader() {
         <motion.div
           key="loader"
           initial={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.4, ease: "easeInOut" }}
-          className="fixed inset-0 z-[999] flex flex-col items-center justify-center gap-8 bg-white dark:bg-black"
+          exit={{ opacity: 0, pointerEvents: "none" }}
+          transition={{ duration: 0.3, ease: "easeInOut" }}
+          className="fixed inset-0 z-[999] flex flex-col items-center justify-center gap-8 bg-white dark:bg-black pointer-events-none"
         >
           {/* Wordmark */}
           <motion.span

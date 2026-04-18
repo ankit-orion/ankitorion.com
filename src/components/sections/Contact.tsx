@@ -4,13 +4,14 @@ import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { ArrowRight, Calendar, MessageSquare, Clock, Check, Send, User, Mail, Sparkles } from "lucide-react";
 import { SectionCornerMarks } from "@/components/ui/GridLines";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useTransition } from "react";
 import { toast } from "sonner";
 
 type ViewType = "none" | "book" | "message";
 
 export function Contact() {
   const [view, setView] = useState<ViewType>("none");
+  const [, startTransition] = useTransition();
   const [selectedDate, setSelectedDate] = useState<number | null>(null);
   const [selectedTime, setSelectedTime] = useState<string | null>(null);
 
@@ -96,7 +97,7 @@ export function Contact() {
                 Something.
               </h2>
               <div className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden bg-gray-100 dark:bg-[#111] flex-shrink-0 border-2 border-black/5 dark:border-white/10 hidden sm:block">
-                 <Image src="/portrait.png" alt="Ankit Orion" fill className="object-cover filter grayscale contrast-125" />
+                 <Image src="/portrait.png" alt="Ankit Orion" fill sizes="80px" className="object-cover filter grayscale contrast-125" />
               </div>
             </div>
 
@@ -107,7 +108,7 @@ export function Contact() {
             {/* View Selector Buttons */}
             <div className="flex flex-col sm:flex-row justify-center lg:justify-start gap-4 pt-4">
                <button 
-                 onClick={() => setView("book")}
+                 onClick={() => startTransition(() => setView("book"))}
                  className={`flex items-center justify-center gap-2 px-8 py-4 rounded-full font-bold transition-all duration-300 border-2 w-full sm:w-auto ${
                    view === "book" 
                    ? "bg-black dark:bg-white text-white dark:text-black border-black dark:border-white shadow-xl sm:scale-105" 
@@ -118,7 +119,7 @@ export function Contact() {
                  Book a 15-Min Call
                </button>
                <button 
-                 onClick={() => setView("message")}
+                 onClick={() => startTransition(() => setView("message"))}
                  className={`flex items-center justify-center gap-2 px-8 py-4 rounded-full font-bold transition-all duration-300 border-2 w-full sm:w-auto ${
                    view === "message" 
                    ? "bg-black dark:bg-white text-white dark:text-black border-black dark:border-white shadow-xl sm:scale-105" 

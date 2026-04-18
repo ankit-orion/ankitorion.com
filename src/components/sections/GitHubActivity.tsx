@@ -8,8 +8,8 @@ import type { ActivityItem } from "@/app/api/github/route";
 
 function Skeleton() {
   return (
-    <div className="space-y-6 max-w-3xl border-l-[2px] border-black/5 dark:border-white/5 ml-[19px] sm:ml-[23px] pl-6 sm:pl-8 py-4">
-      {Array.from({ length: 2 }).map((_, i) => (
+    <div className="space-y-6 max-w-3xl border-l-[2px] border-black/5 dark:border-white/5 ml-[19px] sm:ml-[23px] pl-6 sm:pl-8 py-4 min-h-[400px]">
+      {Array.from({ length: 5 }).map((_, i) => (
         <div key={i} className="relative animate-pulse">
            <div className="absolute -left-[40px] sm:-left-[48px] top-0 w-7 h-7 rounded-full bg-black/5 dark:bg-white/5 shrink-0" />
            <div className="flex-1 space-y-4">
@@ -46,7 +46,7 @@ export function GitHubActivity() {
       <SectionCornerMarks />
 
       {/* Align with max-w-5xl established across all sections */}
-      <div className="px-4 md:px-8 max-w-5xl mx-auto font-sans">
+      <div className="px-4 md:px-8 max-w-5xl mx-auto font-sans min-h-[600px]">
         
         {/* Main Section Heading */}
         <motion.div

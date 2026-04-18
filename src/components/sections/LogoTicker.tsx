@@ -102,6 +102,8 @@ export function LogoTicker() {
                                 <img
                                   src={tech.icon}
                                   alt={tech.name}
+                                  width={40}
+                                  height={40}
                                   className="w-full h-full object-contain"
                                   loading="lazy"
                                 />

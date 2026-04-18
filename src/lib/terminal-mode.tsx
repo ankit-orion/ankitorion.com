@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState, useTransition } from "react";
 
 type TerminalModeContextType = {
   isTerminalMode: boolean;
@@ -14,17 +14,19 @@ const TerminalModeContext = createContext<TerminalModeContextType>({
 
 export function TerminalModeProvider({ children }: { children: React.ReactNode }) {
   const [isTerminalMode, setIsTerminalMode] = useState(false);
+  const [, startTransition] = useTransition();
 
-  // Persist preference across page refreshes
   useEffect(() => {
     const saved = localStorage.getItem("terminal-mode");
     if (saved === "true") setIsTerminalMode(true);
   }, []);
 
   const toggle = () => {
-    setIsTerminalMode((prev) => {
-      localStorage.setItem("terminal-mode", String(!prev));
-      return !prev;
+    startTransition(() => {
+      setIsTerminalMode((prev) => {
+        localStorage.setItem("terminal-mode", String(!prev));
+        return !prev;
+      });
     });
   };
 
