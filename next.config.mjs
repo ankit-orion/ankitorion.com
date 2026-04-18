@@ -8,12 +8,14 @@ const securityHeaders = [
     key: "Content-Security-Policy",
     value: [
       "default-src 'self'",
-      "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://code.tidio.co https://*.tidio.co",
+      "script-src 'self' 'unsafe-inline' https://code.tidio.co https://*.tidio.co",
       "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://*.tidio.co",
       "font-src 'self' https://fonts.gstatic.com",
       "img-src 'self' data: blob: https://*.tidio.co",
       "connect-src 'self' https://*.tidio.co wss://*.tidio.co",
       "frame-ancestors 'none'",
+      "base-uri 'self'",
+      "object-src 'none'",
     ].join("; "),
   },
 ];

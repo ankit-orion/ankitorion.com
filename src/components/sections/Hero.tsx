@@ -50,7 +50,7 @@ export function Hero() {
             <br />
             Everything Else
             <br />
-            <span className="text-black/40 dark:text-gray-500">Follows.</span>
+            <span className="text-black/60 dark:text-gray-400">Follows.</span>
           </h1>
 
           <motion.p 
@@ -87,6 +87,7 @@ export function Hero() {
                 alt="Portrait of Ankit"
                 fill
                 priority
+                sizes="(max-width: 768px) 100vw, 50vw"
                 className="object-cover filter grayscale contrast-[1.1] scale-110"
               />
               <div className="absolute inset-0 bg-gradient-to-tr from-black/20 via-transparent to-white/10 pointer-events-none"></div>

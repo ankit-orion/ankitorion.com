@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import {
   ArrowRight,
   MoveRight,
@@ -391,9 +392,9 @@ function Card({
                         <div style={{ background: "#333", borderRadius: "50%", width: "1%", height: "1.5%", position: "absolute", left: "49.5%", top: "2%" }}>
                           <div style={{ position: "absolute", left: "35%", top: "40%", width: "30%", height: "30%", borderRadius: "50%", background: "#777" }} />
                         </div>
-                        <div style={{ width: "100%", height: "100%", background: "#111", overflow: "hidden" }}>
+                        <div style={{ width: "100%", height: "100%", background: "#111", overflow: "hidden", position: "relative" }}>
                           {project.previewImage && (
-                            <img src={project.previewImage} alt="" className="w-full h-full object-cover object-top block" />
+                            <Image src={project.previewImage} alt="" fill sizes="(max-width: 768px) 320px, 480px" className="object-cover object-top" />
                           )}
                         </div>
                       </div>

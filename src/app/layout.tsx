@@ -113,7 +113,7 @@ export default function RootLayout({
     <html lang="en" className="scroll-smooth" suppressHydrationWarning>
       <head>
         <link rel="preconnect" href="https://code.tidio.co" />
-        <link rel="dns-prefetch" href="https://code.tidio.co" />
+        <link rel="preconnect" href="https://socket.tidio.co" />
       </head>
       <body
         className={`${outfit.variable} ${caveat.variable} font-sans antialiased text-foreground bg-background`}

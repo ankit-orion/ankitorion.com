@@ -209,13 +209,15 @@ export function BookSection() {
               <button
                 key={i}
                 onClick={() => goTo(i)}
-                className={`h-1.5 rounded-full transition-all duration-300 ${
+                className="relative flex items-center justify-center w-6 h-6"
+                aria-label={`Go to book ${i + 1}`}
+              >
+                <span className={`h-1.5 rounded-full transition-all duration-300 block ${
                   i === index
                     ? "w-8 bg-black dark:bg-white"
                     : "w-1.5 bg-gray-300 dark:bg-gray-700 hover:bg-gray-400 dark:hover:bg-gray-500"
-                }`}
-                aria-label={`Go to book ${i + 1}`}
-              />
+                }`} />
+              </button>
             ))}
           </div>
 

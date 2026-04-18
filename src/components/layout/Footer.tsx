@@ -11,9 +11,9 @@ export function Footer() {
   const currentYear = new Date().getFullYear();
 
   const socials = [
-    { href: "https://x.com/OrionAnkit", icon: XIcon },
-    { href: "https://www.linkedin.com/in/ankit-orion/", icon: Linkedin },
-    { href: "https://github.com/ankit-orion", icon: Github },
+    { href: "https://x.com/OrionAnkit", icon: XIcon, label: "X (Twitter)" },
+    { href: "https://www.linkedin.com/in/ankit-orion/", icon: Linkedin, label: "LinkedIn" },
+    { href: "https://github.com/ankit-orion", icon: Github, label: "GitHub" },
   ];
 
   return (
@@ -24,12 +24,13 @@ export function Footer() {
           © {currentYear} Ankit Mishra
         </span>
         <div className="flex items-center gap-1">
-          {socials.map(({ href, icon: Icon }, i) => (
+          {socials.map(({ href, icon: Icon, label }, i) => (
             <Link
               key={i}
               href={href}
               target="_blank"
               rel="noopener noreferrer"
+              aria-label={label}
               className="w-9 h-9 flex items-center justify-center rounded-full text-gray-500 dark:text-gray-300 hover:text-black dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/5 transition"
             >
               <Icon className="w-4 h-4" />
