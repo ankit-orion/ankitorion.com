@@ -1,3 +1,5 @@
+export const revalidate = 3600;
+
 import { TerminalModeProvider } from "@/lib/terminal-mode";
 import { TerminalModeSwitch } from "@/components/sections/TerminalModeSwitch";
 import { Navbar } from "@/components/layout/Navbar";

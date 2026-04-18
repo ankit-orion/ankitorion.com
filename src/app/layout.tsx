@@ -13,11 +13,15 @@ import { PageLoader } from "@/components/ui/PageLoader";
 const outfit = OutfitFont({
   subsets: ["latin"],
   variable: "--font-outfit",
+  display: "swap",
+  preload: true,
 });
 
 const caveat = CaveatFont({
   subsets: ["latin"],
   variable: "--font-caveat",
+  display: "swap",
+  preload: false,
 });
 
 export const metadata: Metadata = {
@@ -107,6 +111,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth" suppressHydrationWarning>
+      <head>
+        <link rel="preconnect" href="https://code.tidio.co" />
+        <link rel="dns-prefetch" href="https://code.tidio.co" />
+      </head>
       <body
         className={`${outfit.variable} ${caveat.variable} font-sans antialiased text-foreground bg-background`}
       >
